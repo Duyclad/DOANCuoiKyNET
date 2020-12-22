@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace DOANCuoiKyNET.Entities
 {
-    [Table("ipuser")]
-    public class ipuser
+    [Table("IPuser")]
+    public class IPuser
     {
         [Key]
-        public int idipuser { get; set; }
-        [Required]
-        public int iduser { get; set; }
+        public int idIPuser { get; set; }
+      
+        public int idUser { get; set; }
+        [ForeignKey("idUser")]
+        public User User { get; set; }
+
         public string diachiip { get; set; }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace DOANCuoiKyNET.Entities
 {
@@ -12,15 +10,18 @@ namespace DOANCuoiKyNET.Entities
     {
         [Key]
         public int idBanDo { get; set; }
-        [Required]
-        public string tenbando { get; set; }
+       
+        public string tenBanDo { get; set; }
         [Required]
         public string url { get; set; }
-        [Required]
-        public string trangthai { get; set; }
-        public string mota { get; set; }
-        public DateTime ngaytao { get; set; }
-        public DateTime ngaycapnhat { get; set; }
-        public int iduser { get; set; }
+       
+        public string trangThai { get; set; }
+        public string moTa { get; set; }
+        public DateTime ngayTao { get; set; }
+        public DateTime ngayCapNhat { get; set; }
+        public int idUser { get; set; }
+        [ForeignKey("idUser")]
+        public User User { get; set; }
+        
     }
 }

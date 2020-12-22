@@ -22,7 +22,7 @@ namespace DOANCuoiKyNET.Entities
         public string url { get; set; }
 
         public int idUser { get; set; }
-        [ForeignKey ("idUser")]
+        [ForeignKey("idUser")]
         public User User { get; set; }
 
 

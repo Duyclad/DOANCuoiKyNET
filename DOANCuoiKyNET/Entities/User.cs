@@ -69,6 +69,17 @@ namespace DOANCuoiKyNET.Entities
         public ICollection<ChiTietTTSP> ChiTietTTSPs { get; set; }
 
         public ICollection<HinhAnh> HinhAnhs { get; set; }
+        public ICollection<BanDo> BanDos { get; set; }
+        public ICollection<GioiThieu> GioiThieus  { get; set; }
+
+        public ICollection<ChinhSachQuyenRiengTu> ChinhSachQuyenRiengTus { get; set; }
+        public ICollection<DieuKhoanDichVu> DieuKhoanDichVus { get; set; }
+        public ICollection<ChinhSachTraHangVaHoanTien> ChinhSachTraHangVaHoanTiens { get; set; }
+        public ICollection<QuyDinhChung> QuyDinhChungs { get; set; }
+        public ICollection<ChinhSachGiaoHang> ChinhSachGiaoHangs { get; set; }
+        public ICollection<MaXacNhan> MaXacNhans { get; set; }
+        public ICollection<GioHang> GioHangs { get; set; }
+        public ICollection<IPuser> IPusers { get; set; }
         public User()
         {
             Banners = new HashSet<Banner>();
@@ -85,6 +96,16 @@ namespace DOANCuoiKyNET.Entities
             ThuocTinhSPs = new HashSet<ThuocTinhSP>();
             ChiTietTTSPs = new HashSet<ChiTietTTSP>();
             HinhAnhs = new HashSet<HinhAnh>();
+            BanDos = new HashSet<BanDo>();
+            GioiThieus = new HashSet<GioiThieu>();
+            ChinhSachQuyenRiengTus = new HashSet<ChinhSachQuyenRiengTu>();
+            DieuKhoanDichVus = new HashSet<DieuKhoanDichVu>();
+            ChinhSachTraHangVaHoanTiens = new HashSet<ChinhSachTraHangVaHoanTien>();
+            QuyDinhChungs = new HashSet<QuyDinhChung>();
+            ChinhSachGiaoHangs = new HashSet<ChinhSachGiaoHang>();
+            MaXacNhans = new HashSet<MaXacNhan>();
+            GioHangs = new HashSet<GioHang>();
+            IPusers = new HashSet<IPuser>();
         }
     }
 }

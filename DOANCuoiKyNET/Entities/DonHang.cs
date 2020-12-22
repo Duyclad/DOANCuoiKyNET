@@ -40,7 +40,7 @@ namespace DOANCuoiKyNET.Entities
         public int tongTienHang { get; set; }
 
         public string maGiamGiaDH { get; set; }
-
+        
         public string maGiamGiaShip { get; set; }
 
         public int phiShip { get; set; }
@@ -50,18 +50,21 @@ namespace DOANCuoiKyNET.Entities
         public string trangThai { get; set; }
 
         public string idUser { get; set; }
-
+        [ForeignKey("idUser")]
         public string idNVCSKH { get; set; }
 
         public string idNVShip { get; set; }
 
         public User User { get; set; }
-        public MaGiamGia MaGiamGia { get; set; }
+        
         public ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
+
+        public ICollection<TraHang> TraHangs { get; set; }
 
         public DonHang()
         {
             ChiTietDonHangs = new HashSet<ChiTietDonHang>();
+            TraHangs = new HashSet<TraHang>();
         }
     }
 }

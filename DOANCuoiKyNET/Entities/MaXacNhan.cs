@@ -12,11 +12,14 @@ namespace DOANCuoiKyNET.Entities
     {
         [Key]
         public int idMaXacNhan { get; set; }
-        [Required]
-        public int idkh { get; set; }
-        public string code { get; set; }
-        public DateTime ngaygui { get; set; }
-        public DateTime ngayxacnhan { get; set; }
-        public string trangthai { get; set; }
+       
+        public int idUser { get; set; }
+        [ForeignKey("idUser")]
+        public User User { get; set; }
+        public int code { get; set; }
+        public DateTime ngayGui { get; set; }
+        public DateTime ngayXacNhan { get; set; }
+        public int loai { get; set; }
+        public string trangThai { get; set; }
     }
 }

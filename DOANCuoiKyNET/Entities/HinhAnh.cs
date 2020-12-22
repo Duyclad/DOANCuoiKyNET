@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DOANCuoiKyNET.Entities
@@ -7,6 +8,7 @@ namespace DOANCuoiKyNET.Entities
     [Table("HinhAnh")]
     public class HinhAnh
     {
+        [Key]
         public int idHinhAnh { get; set; }
 
         public string tenHinhAnh { get; set; }

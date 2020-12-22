@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DOANCuoiKyNET.Entities
 {
@@ -8,19 +9,21 @@ namespace DOANCuoiKyNET.Entities
     {
         [Key]
         public int idTraHang { get; set; }
-        [Required]
-        [MaxLength(100)]
-        public int idHoaDon { get; set; }
-        [Required]
+        
+        public int idDH { get; set; }
+        [ForeignKey("idDH")]
+        public DonHang DonHang { get; set; }
         
         public int idSP { get; set; }
+        [ForeignKey("idSP")]
+        public SanPham SanPham { get; set; }
         [Required]
+        public string lyDoTraHang { get; set; }
+     
+        public string trangThai { get; set; }
         
-        public string lydotrahang { get; set; }
-        [Required]
-        public string trangthai { get; set; }
-        
-        public DateTime ngayyeucautrahang { get; set; }
-        public DateTime ngayhoantien { get; set; }
+        public DateTime ngayYeuCauTraHang { get; set; }
+
+        public DateTime ngayHoanTien { get; set; }
     }
 }

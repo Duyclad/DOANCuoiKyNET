@@ -29,11 +29,11 @@ namespace DOANCuoiKyNET.Entities
         
         public string moTa { get; set; }
 
-        public string idLoaiSP { get; set; }
+        public int idLoaiSP { get; set; }
         [ForeignKey("idLoaiSP")]
         public LoaiSP LoaiSP { get; set; }
 
-        public string idThuongHieu { get; set; }
+        public int idThuongHieu { get; set; }
         [ForeignKey("idThuongHieu")]
         public ThuongHieu ThuongHieu { get; set; }
 
@@ -56,6 +56,8 @@ namespace DOANCuoiKyNET.Entities
         public ICollection<ThuocTinhSP> ThuocTinhSPs { get; set; }
 
         public ICollection<AnhSP> AnhSPs { get; set; }
+        public ICollection<TraHang> TraHangs { get; set; }
+        public ICollection<GioHang> GioHangs { get; set; }
         public SanPham()
         {
             DanhGiaSPs = new HashSet<DanhGiaSP>();
@@ -63,6 +65,8 @@ namespace DOANCuoiKyNET.Entities
             LuotThiches = new HashSet<LuotThich>();
             ThuocTinhSPs = new HashSet<ThuocTinhSP>();
             AnhSPs = new HashSet<AnhSP>();
+            TraHangs = new HashSet<TraHang>();
+            GioHangs = new HashSet<GioHang>();
         }
     }
 }

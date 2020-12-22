@@ -8,12 +8,15 @@ namespace DOANCuoiKyNET.Entities
     [Table("AnhSP")]
     public class AnhSP
     {
+
         [Key]
+        public int idAnhSP { get; set; }
         public int idHinhAnh { get; set; }
         [ForeignKey("idHinhAnh")]
         public HinhAnh HinhAnh { get; set; }
-        [Key]
+        
         public int idSP { get; set; }
+        [ForeignKey("idSP")]
         public SanPham SanPham { get; set; }
     }
 }
