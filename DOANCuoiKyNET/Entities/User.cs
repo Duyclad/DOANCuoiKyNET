@@ -67,6 +67,8 @@ namespace DOANCuoiKyNET.Entities
         public ICollection<ThuocTinhSP> ThuocTinhSPs { get; set; }
 
         public ICollection<ChiTietTTSP> ChiTietTTSPs { get; set; }
+
+        public ICollection<HinhAnh> HinhAnhs { get; set; }
         public User()
         {
             Banners = new HashSet<Banner>();
@@ -82,6 +84,7 @@ namespace DOANCuoiKyNET.Entities
             LuotThiches = new HashSet<LuotThich>();
             ThuocTinhSPs = new HashSet<ThuocTinhSP>();
             ChiTietTTSPs = new HashSet<ChiTietTTSP>();
+            HinhAnhs = new HashSet<HinhAnh>();
         }
     }
 }

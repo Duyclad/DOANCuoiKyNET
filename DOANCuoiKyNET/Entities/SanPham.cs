@@ -54,12 +54,15 @@ namespace DOANCuoiKyNET.Entities
         public ICollection<LuotThich> LuotThiches { get; set; }
 
         public ICollection<ThuocTinhSP> ThuocTinhSPs { get; set; }
+
+        public ICollection<AnhSP> AnhSPs { get; set; }
         public SanPham()
         {
             DanhGiaSPs = new HashSet<DanhGiaSP>();
             LuotMuas = new HashSet<LuotMua>();
             LuotThiches = new HashSet<LuotThich>();
             ThuocTinhSPs = new HashSet<ThuocTinhSP>();
+            AnhSPs = new HashSet<AnhSP>();
         }
     }
 }
