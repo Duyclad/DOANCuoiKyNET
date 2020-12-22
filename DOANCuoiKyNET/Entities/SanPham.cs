@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,6 +26,7 @@ namespace DOANCuoiKyNET.Entities
         
         public int soLuongKho { get; set; }
         [Required]
+        
         public string moTa { get; set; }
 
         public string idLoaiSP { get; set; }
@@ -43,5 +45,21 @@ namespace DOANCuoiKyNET.Entities
         public int idUser { get; set; }
         [ForeignKey("idUser")]
         public User User { get; set; }
+
+
+        public ICollection<DanhGiaSP> DanhGiaSPs { get; set; }
+
+        public ICollection<LuotMua> LuotMuas { get; set; }
+
+        public ICollection<LuotThich> LuotThiches { get; set; }
+
+        public ICollection<ThuocTinhSP> ThuocTinhSPs { get; set; }
+        public SanPham()
+        {
+            DanhGiaSPs = new HashSet<DanhGiaSP>();
+            LuotMuas = new HashSet<LuotMua>();
+            LuotThiches = new HashSet<LuotThich>();
+            ThuocTinhSPs = new HashSet<ThuocTinhSP>();
+        }
     }
 }

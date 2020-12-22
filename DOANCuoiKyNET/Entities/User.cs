@@ -50,12 +50,38 @@ namespace DOANCuoiKyNET.Entities
 
         public ICollection<SanPham> SanPhams { get; set; }
 
+        public ICollection<MaGiamGia> MaGiamGias { get; set; }
+
+        public ICollection<DanhGiaSP> DanhGiaSPs { get; set; }
+
+        public ICollection<NhanVien> NhanViens { get; set; }
+
+        public ICollection<QuanTri> QuanTris { get; set; }
+
+        public ICollection<DonHang> DonHangs { get; set; }
+
+        public ICollection<LuotMua> LuotMuas { get; set; }
+
+        public ICollection<LuotThich> LuotThiches { get; set; }
+
+        public ICollection<ThuocTinhSP> ThuocTinhSPs { get; set; }
+
+        public ICollection<ChiTietTTSP> ChiTietTTSPs { get; set; }
         public User()
         {
             Banners = new HashSet<Banner>();
             ThuongHieus = new HashSet<ThuongHieu>();
             LoaiSPs = new HashSet<LoaiSP>();
             SanPhams = new HashSet<SanPham>();
+            MaGiamGias = new HashSet<MaGiamGia>();
+            DanhGiaSPs = new HashSet<DanhGiaSP>();
+            NhanViens = new HashSet<NhanVien>();
+            QuanTris = new HashSet<QuanTri>();
+            DonHangs = new HashSet<DonHang>();
+            LuotMuas = new HashSet<LuotMua>();
+            LuotThiches = new HashSet<LuotThich>();
+            ThuocTinhSPs = new HashSet<ThuocTinhSP>();
+            ChiTietTTSPs = new HashSet<ChiTietTTSP>();
         }
     }
 }
