@@ -37,7 +37,7 @@ namespace DOANCuoiKyNET.Entities
         public DbSet<ThuocTinhSP> ThuocTinhSPs { get; set; }
         public DbSet<ThuongHieu> ThuongHieus { get; set; }
         public DbSet<TraHang> TraHangs { get; set; }
-        
+        public object User { get; internal set; }
 
         public MyDBContext(DbContextOptions options) : base(options) { }
     }

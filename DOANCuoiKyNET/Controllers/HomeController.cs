@@ -20,6 +20,10 @@ namespace DOANCuoiKyNET.Controllers
 
         public IActionResult Index()
         {
+            string intrd;
+            Random random = new Random();
+            intrd = random.Next(10000001, 99999998).ToString();
+            ViewBag.mess = intrd;
             return View();
         }
 

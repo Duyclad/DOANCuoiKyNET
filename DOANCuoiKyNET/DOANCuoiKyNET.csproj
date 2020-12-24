@@ -22,7 +22,10 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="Areas\Staff\" />
+    <Folder Include="wwwroot\images\loaisp\" />
+    <Folder Include="wwwroot\images\user\" />
+    <Folder Include="wwwroot\images\sanpham\" />
   </ItemGroup>
 
 </Project>
