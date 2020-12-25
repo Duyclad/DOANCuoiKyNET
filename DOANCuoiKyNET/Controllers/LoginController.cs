@@ -65,8 +65,46 @@ namespace DOANCuoiKyNET.Controllers
             }
             else
             {
-                ViewBag.mess = "1";
-                return View();
+                
+
+                            var admins
+                = from p in _context.Users
+                  join c in _context.QuanTris on p.idUser equals c.idUser
+                  where p.emailUser == email
+                  select new
+                  {
+                      tenUser = p.tenUser,
+         
+                  };
+                if (admins.Count() == 1)
+                {
+                    ViewBag.mess = "admins";
+                    return View();
+                }
+                else 
+                {
+                    var staffs
+                = from p in _context.Users
+                  join c in _context.QuanTris on p.idUser equals c.idUser
+                  where p.emailUser == email
+                  select new
+                  {
+                      tenUser = p.tenUser,
+
+                  };
+                    if (staffs.Count()==1)
+                    {
+                        ViewBag.mess = "staffs";
+                        return View();
+                    }
+                        else
+                            {
+                                ViewBag.mess = "users";
+                                return View();
+                            }
+                }
+                
+                
             }
             
         }

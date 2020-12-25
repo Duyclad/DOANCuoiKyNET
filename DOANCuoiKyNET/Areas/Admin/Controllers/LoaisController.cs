@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using DOANCuoiKyNET.Areas.Admin.Models;
 
 namespace DOANCuoiKyNET.Controllers
 {
@@ -23,9 +24,28 @@ namespace DOANCuoiKyNET.Controllers
         }
 
         //GET Loais
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.LoaiSPs.ToListAsync());
+            var loaisp
+                = from p in _context.LoaiSPs
+                  join c in _context.Users on p.idUser equals c.idUser
+                  // where p.ProductId == 2
+                  select new User_Loai
+                  {
+                      idLoaiSP = p.idLoaiSP,
+                      hinhAnh = p.hinhAnh,
+                 tenLoaiSP = p.tenLoaiSP,
+                 type = p.type,
+                 metaTitle = p.metaTitle,
+                 trangThai = p.trangThai,
+                 ngayTao = p.ngayTao,
+                 ngayCapNhat = p.ngayCapNhat,
+                 hoUser =c.hoUser,
+                 tenUser = c.tenUser
+                  };
+
+           
+            return View(loaisp);
         }
 
         //GET Loais/Details/5
@@ -150,10 +170,63 @@ namespace DOANCuoiKyNET.Controllers
         }
 
 
+      [HttpPost]
+        public IActionResult TimAjax(string keyword)
+        {
+       
+            if (!string.IsNullOrEmpty(keyword))
+            {
+               var  dsLoai = from p in _context.LoaiSPs
+                        join c in _context.Users on p.idUser equals c.idUser
+                        where p.tenLoaiSP.Contains(keyword) || p.metaTitle.Contains(keyword)
+                       select new User_Loai
+                        {
+                            idLoaiSP = p.idLoaiSP,
+                            hinhAnh = p.hinhAnh,
+                            tenLoaiSP = p.tenLoaiSP,
+                            type = p.type,
+                            metaTitle = p.metaTitle,
+                            trangThai = p.trangThai,
+                            ngayTao = p.ngayTao,
+                            ngayCapNhat = p.ngayCapNhat,
+                            hoUser = c.hoUser,
+                            tenUser = c.tenUser
+                        };
+                return PartialView(dsLoai);
+
+            }
+
+            var dsLoai2 = from p in _context.LoaiSPs
+                         join c in _context.Users on p.idUser equals c.idUser
+                        // where p.tenLoaiSP.Contains(keyword) || p.metaTitle.Contains(keyword)
+                         select new User_Loai
+                         {
+                             idLoaiSP = p.idLoaiSP,
+                             hinhAnh = p.hinhAnh,
+                             tenLoaiSP = p.tenLoaiSP,
+                             type = p.type,
+                             metaTitle = p.metaTitle,
+                             trangThai = p.trangThai,
+                             ngayTao = p.ngayTao,
+                             ngayCapNhat = p.ngayCapNhat,
+                             hoUser = c.hoUser,
+                             tenUser = c.tenUser
+                         };
+
+
+
+
+
+
+            return PartialView(dsLoai2);
+        }
+
 
         private bool  LoaiSPExists(int id)
         {
             return _context.LoaiSPs.Any(e => e.idLoaiSP == id);
         }
+
+
     }
 }

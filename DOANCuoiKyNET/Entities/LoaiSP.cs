@@ -18,6 +18,8 @@ namespace DOANCuoiKyNET.Entities
         public string hinhAnh { get; set; }
         [Required]
         public string metaTitle { get; set; }
+        
+        public int type { get; set; }
 
         public string trangThai { get; set; }
 
