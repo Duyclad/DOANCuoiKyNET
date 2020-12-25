@@ -10,7 +10,7 @@ namespace DOANCuoiKyNET.Entities
     {
         [Key]
         public int idBanner { get; set; }
-        [Required]
+      
         public string hinhAnh { get; set; }
         
         public DateTime ngayTao { get; set; }

@@ -17,7 +17,7 @@ namespace DOANCuoiKyNET.Entities
         public int giaSP { get; set; }
 
         public int giamGiaSP { get; set; }
-        [Required]
+       
         public string hinhAnh { get; set; }
         [Required]
         public string metaTitle { get; set; }
@@ -30,8 +30,8 @@ namespace DOANCuoiKyNET.Entities
         public string moTa { get; set; }
 
         public int idLoaiSP { get; set; }
-        [ForeignKey("idLoaiSP")]
-        public LoaiSP LoaiSP { get; set; }
+        [ForeignKey("idLoaiSPcon")]
+        public LoaiSPcon LoaiSPcon { get; set; }
 
         public int idThuongHieu { get; set; }
         [ForeignKey("idThuongHieu")]

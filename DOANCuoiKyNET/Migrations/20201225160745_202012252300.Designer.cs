@@ -4,14 +4,16 @@ using DOANCuoiKyNET.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DOANCuoiKyNET.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201225160745_202012252300")]
+    partial class _202012252300
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,6 +87,7 @@ namespace DOANCuoiKyNET.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("hinhAnh")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("idUser")
@@ -617,6 +620,7 @@ namespace DOANCuoiKyNET.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("hinhAnh")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("idUser")
@@ -655,6 +659,7 @@ namespace DOANCuoiKyNET.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("hinhAnh")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("idLoaiSP")
@@ -893,12 +898,10 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("hinhAnh")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("idLoaiSP")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("idLoaiSPcon")
                         .HasColumnType("int");
 
                     b.Property<int>("idThuongHieu")
@@ -937,7 +940,7 @@ namespace DOANCuoiKyNET.Migrations
 
                     b.HasKey("idSP");
 
-                    b.HasIndex("idLoaiSPcon");
+                    b.HasIndex("idLoaiSP");
 
                     b.HasIndex("idThuongHieu");
 
@@ -1375,9 +1378,11 @@ namespace DOANCuoiKyNET.Migrations
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.SanPham", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.LoaiSPcon", "LoaiSPcon")
+                    b.HasOne("DOANCuoiKyNET.Entities.LoaiSP", "LoaiSP")
                         .WithMany("SanPhams")
-                        .HasForeignKey("idLoaiSPcon");
+                        .HasForeignKey("idLoaiSP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DOANCuoiKyNET.Entities.ThuongHieu", "ThuongHieu")
                         .WithMany("SanPhams")

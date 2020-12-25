@@ -1,62 +1,63 @@
 ﻿@model DOANCuoiKyNET.Entities.LoaiSP
 
 @{
-    ViewData["Title"] = "LoaisController";
+    ViewData["Title"] = "Create";
+    Layout = "_BackEndAdmin";
 }
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column" style="padding:20px">
 
-<h1>LoaisController</h1>
+    <h1>Thêm mới Loại sản phẩm (Cha)</h1>
 
-<h4>LoaiSP</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="LoaisController" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="tenLoaiSP" class="control-label"></label>
-                <input asp-for="tenLoaiSP" class="form-control" />
-                <span asp-validation-for="tenLoaiSP" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="hinhAnh" class="control-label"></label>
-                <input name="hinhAnh" type="file" class="form-control" />
-                
-            </div>
-            <div class="form-group">
-                <label asp-for="metaTitle" class="control-label"></label>
-                <input asp-for="metaTitle" class="form-control" />
-                <span asp-validation-for="metaTitle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="trangThai" class="control-label"></label>
-                <input asp-for="trangThai" class="form-control" />
-                <span asp-validation-for="trangThai" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ngayTao" class="control-label"></label>
-                <input asp-for="ngayTao" class="form-control" />
-                <span asp-validation-for="ngayTao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ngayCapNhat" class="control-label"></label>
-                <input asp-for="ngayCapNhat" class="form-control" />
-                <span asp-validation-for="ngayCapNhat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="idUser" class="control-label"></label>
-                <select asp-for="idUser" class ="form-control" asp-items="ViewBag.idUser"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="tenLoaiSP" class="control-label">Tên loại sản phẩm</label>
+                    <input asp-for="tenLoaiSP" class="form-control" />
+                    <span asp-validation-for="tenLoaiSP" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="hinhAnh" class="control-label">Hình ảnh</label>
+                    <input name="hinhAnh" type="file" class="form-control" />
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="metaTitle" class="control-label">Tiêu đề Web</label>
+                    <input asp-for="metaTitle" class="form-control" />
+                    <span asp-validation-for="metaTitle" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label asp-for="trangThai" class="control-label">Trạng thái</label>
+                   
+
+
+                    <select  asp-for="trangThai" class="form-control" >
+                        <option value="Hiển thị" selected="selected">Hiển thị</option>
+                        <option value="Ẩn">Ẩn</option>
+
+                    </select>
+                     
+                    
+                    <span asp-validation-for="trangThai" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</div>

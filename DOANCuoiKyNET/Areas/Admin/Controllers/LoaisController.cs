@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using DOANCuoiKyNET.Areas.Admin.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Globalization;
+using System.IO;
 
 namespace DOANCuoiKyNET.Controllers
 {
@@ -35,7 +39,7 @@ namespace DOANCuoiKyNET.Controllers
                       idLoaiSP = p.idLoaiSP,
                       hinhAnh = p.hinhAnh,
                  tenLoaiSP = p.tenLoaiSP,
-                 type = p.type,
+                
                  metaTitle = p.metaTitle,
                  trangThai = p.trangThai,
                  ngayTao = p.ngayTao,
@@ -44,7 +48,7 @@ namespace DOANCuoiKyNET.Controllers
                  tenUser = c.tenUser
                   };
 
-           
+            
             return View(loaisp);
         }
 
@@ -76,15 +80,43 @@ namespace DOANCuoiKyNET.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idLoaiSP,tenLoaiSP,hinhAnh,metaTitle,trangThai,ngayTao,ngayCapNhat,idUser")] LoaiSP loai, IFormFile hinhAnh)
+        public async Task<IActionResult> Create(LoaiSP loai, IFormFile hinhAnh)
         {
             if (ModelState.IsValid)
             {
+                if (hinhAnh != null)
+                {
+                   // DateTime hientai = DateTime.UtcNow;
+                   // string htai = hientai.ToLongDateString();
+
+                    
+            string format = "yyyy_MM_dd_HH_mm_ss";
+
+                    DateTime now = DateTime.Now;
+                   
+                    string s = now.ToString(format) + ".jpg";
+                    
+                    var urlfull = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","images","loaisp",s);
+                    using (var file = new FileStream(urlfull, FileMode.Create))
+                    {
+                        await hinhAnh.CopyToAsync(file);
+                    }
+
+                     loai.hinhAnh = s;
+                }
+
+                loai.idUser = 1;
+
+               
+                loai.ngayTao = DateTime.Now;
+                loai.ngayCapNhat = DateTime.Now;
                 _context.Add(loai);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+             //   return RedirectToAction(nameof(Index));
+
             }
-            return View(loai);
+            return RedirectToAction("Index");
+            
         }
 
         // GET: Loais/Edit/5
@@ -184,7 +216,7 @@ namespace DOANCuoiKyNET.Controllers
                             idLoaiSP = p.idLoaiSP,
                             hinhAnh = p.hinhAnh,
                             tenLoaiSP = p.tenLoaiSP,
-                            type = p.type,
+                            
                             metaTitle = p.metaTitle,
                             trangThai = p.trangThai,
                             ngayTao = p.ngayTao,
@@ -204,7 +236,7 @@ namespace DOANCuoiKyNET.Controllers
                              idLoaiSP = p.idLoaiSP,
                              hinhAnh = p.hinhAnh,
                              tenLoaiSP = p.tenLoaiSP,
-                             type = p.type,
+                            
                              metaTitle = p.metaTitle,
                              trangThai = p.trangThai,
                              ngayTao = p.ngayTao,
