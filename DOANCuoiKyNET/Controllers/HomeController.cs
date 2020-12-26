@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DOANCuoiKyNET.Controllers;
+using DOANCuoiKyNET.Session;
+using System.Net;
 
 namespace DOANCuoiKyNET.Controllers
 {
@@ -22,11 +25,49 @@ namespace DOANCuoiKyNET.Controllers
         {
             string intrd;
             Random random = new Random();
-            intrd = random.Next(10000001, 99999998).ToString();
+            intrd = random.Next(100001, 999998).ToString();
             ViewBag.mess = intrd;
-            return View();
+            
+            if (ssuser != null)
+            {
+                ViewBag.houser = ssuser.hoUser.ToUpper();
+                ViewBag.tenuser = ssuser.tenUser;
+                ViewBag.accmenu1 = "Thông tin cá nhân";
+                ViewBag.accmenu2 = "Đơn mua";
+                ViewBag.accmenu3 = "Thoát";
+                if (ssuser.vaitro == "admin")
+                {
+                    ViewBag.accmenu4 = "Trang quản trị";
+                }
+                else if (ssuser.vaitro == "staff")
+                {
+                    ViewBag.accmenu4 = "Trang nhân viên";
+                }
+            }
+            else
+            {
+                ViewBag.houser = "TÀI";
+                ViewBag.tenuser = "KHOẢN";
+                ViewBag.accmenu1 = "Đăng nhập";
+            }
+            IPHostEntry iphost = Dns.GetHostEntry(Dns.GetHostName());
+            string ipadd = Convert.ToString(iphost.AddressList.FirstOrDefault(address => address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork));
+            ViewBag.ipadd = ipadd;
+            return View(ssuser);
         }
 
+        public sessionuser ssuser
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<sessionuser>("ssuser");
+               /* if (data == null)
+                {
+                    data = new sessionuser();
+                }*/
+                return data;
+            }
+        }
         public IActionResult Privacy()
         {
             return View();

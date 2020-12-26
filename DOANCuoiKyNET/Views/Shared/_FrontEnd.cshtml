@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -86,11 +88,64 @@
                     </div>
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@ViewBag.houser @ViewBag.tenuser</a>
                             <div class="dropdown-menu">
-                                <a href="Login" class="dropdown-item">Login</a>
-                                <a href="#" class="dropdown-item">Register</a>
+                                <a href="#" id="accmenu4" class="dropdown-item">@ViewBag.accmenu4</a>
+                                <a href="Login" id="accmenu1" class="dropdown-item">@ViewBag.accmenu1</a>
+                                <a href="#" id="accmenu2" class="dropdown-item">@ViewBag.accmenu2</a>
+                                <a href="#" id="accmenu3" class="dropdown-item">@ViewBag.accmenu3</a>
                             </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $("#accmenu3").click(function () {
+                                        $.ajax({
+                                            url: "/Login/Logout",
+                                            type:"POST",
+                                            success: function () {
+                                                location.reload();
+                                            }
+                                        });
+                                        
+                                    });
+                                    if ($("#accmenu1").html() == "Thông tin cá nhân") {
+                                        $("#accmenu1").attr('href', '/User');
+                                    }
+
+                                    if ($("#accmenu2").html() == "") {
+                                        $("#accmenu2").hide();
+                                    }
+                                    else {
+                                        $("#accmenu2").show();
+                                        $("#accmenu2").attr('href', '/Order');
+                                    }
+
+                                    if ($("#accmenu3").html() == "") {
+                                        $("#accmenu3").hide();
+                                    }
+                                    else {
+                                        $("#accmenu3").show();
+                                        
+                                    }
+
+                                    if ($("#accmenu4").html() == "") {
+                                        $("#accmenu4").hide();
+                                    }
+                                    else {
+
+
+                                        if ($("#accmenu4").html() != "") {
+                                            $("#accmenu4").show();
+                                            if ($("#accmenu4").html() == "Trang quản trị") {
+                                                $("#accmenu4").attr('href', '/Admin/HomeAdmin');
+                                            }
+                                            else {
+                                                $("#accmenu4").attr('href', '/Staff');
+                                            }
+                                        }
+
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -134,7 +189,7 @@
 
 
     @RenderSection("breadcrum", required: false)
-
+    
 
     @RenderBody()
 

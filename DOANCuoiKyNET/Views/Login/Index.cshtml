@@ -4,6 +4,9 @@
     Layout = "_FrontEnd";
 }
 
+
+
+
 <!-- Login Start -->
 <div class="login">
     <div class="container-fluid">
@@ -74,15 +77,18 @@
     <script>
         $(document).ready(function () {
             $("#submitlogin").click(function () {
+                
                 if ($("#emaillogin").val() == "" || $("#mkhaulogin").val() == "") {
                     $("#kqua").html("Bạn chưa nhập đầy đủ thông tin!");
                 }
                 else {
+                    var x = navigator.appVersion;
                     $.ajax({
                         url: "Login/Verify",
                         data: {
                             email: $("#emaillogin").val().trim(),
                             mkhau: $("#mkhaulogin").val().trim(),
+                            x: x,
                         },
                         type: "POST",
                         success: function (data) {

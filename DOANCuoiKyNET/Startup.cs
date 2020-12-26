@@ -30,6 +30,7 @@ namespace DOANCuoiKyNET
             {
                 option.UseSqlServer(Configuration.GetConnectionString("DOANNET"));
             });
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +48,8 @@ namespace DOANCuoiKyNET
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
