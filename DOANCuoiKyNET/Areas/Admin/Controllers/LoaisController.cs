@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Globalization;
 using System.IO;
+using DOANCuoiKyNET.Models;
+using DOANCuoiKyNET.Session;
 
 namespace DOANCuoiKyNET.Controllers
 {
@@ -75,6 +77,19 @@ namespace DOANCuoiKyNET.Controllers
             return View();
         }
 
+        public sessionuser ssuser
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<sessionuser>("ssuser");
+                /* if (data == null)
+                  {
+                      data = new sessionuser();
+                  }*/
+                return data;
+            }
+        }
+
         // POST: Loais/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -105,7 +120,7 @@ namespace DOANCuoiKyNET.Controllers
                      loai.hinhAnh = s;
                 }
 
-                loai.idUser = 1;
+                loai.idUser = ssuser.idUser;
 
                
                 loai.ngayTao = DateTime.Now;

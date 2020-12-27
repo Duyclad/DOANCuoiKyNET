@@ -93,13 +93,13 @@ namespace DOANCuoiKyNET.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Verify(string email, string mkhau,string x)
+        public async Task<IActionResult> Verify(string email, string mkhau, string x)
         {
-          //  var myssuser = ssuser;
+            //  var myssuser = ssuser;
 
             var dsAcc = _context.Users
                 .SingleOrDefault(acc => (acc.emailUser == email && acc.matKhau == mkhau) || (acc.sdtUser == email && acc.matKhau == mkhau));
-            if(dsAcc!=null){
+            if (dsAcc != null) {
                 /*
                                 IPHostEntry iphost = Dns.GetHostEntry(Dns.GetHostName());
                                 string ipadd = Convert.ToString(iphost.AddressList.FirstOrDefault(address => address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork));
@@ -108,15 +108,15 @@ namespace DOANCuoiKyNET.Controllers
                     .SingleOrDefault(ipp => (ipp.idUser == dsAcc.idUser && ipp.diachiip == x));
                 if (dsIp == null)
                 {
-                        IPuser puser = new IPuser();
-                        puser.diachiip = x;
-                        puser.idUser = dsAcc.idUser;
+                    IPuser puser = new IPuser();
+                    puser.diachiip = x;
+                    puser.idUser = dsAcc.idUser;
 
-                        _context.Add(puser);
-                        await _context.SaveChangesAsync();
+                    _context.Add(puser);
+                    await _context.SaveChangesAsync();
 
                 }
-                
+
 
                 var admins
     = from p in _context.Users
@@ -209,18 +209,18 @@ namespace DOANCuoiKyNET.Controllers
 
 
             }
-           
-           
-         
+
+
+
             else
             {
                 var test = _context.Users
-                .Where(acc => acc.emailUser == email )
+                .Where(acc => acc.emailUser == email)
 
                 .Select(p => new User
                 {
                     idUser = p.idUser,
-                
+
                 });
                 if (test.Count() == 1)
                 {
@@ -229,12 +229,32 @@ namespace DOANCuoiKyNET.Controllers
                 }
                 else {
                     ViewBag.mess = "Tài khoản không tồn tại!";
-                   return View();
+                    return View();
                 }
-                
+
             }
-            
-            
+
+
+
+
+        }
+     
+
+        [HttpPost]
+        public async Task<IActionResult> signup (User user)
+        {
+            if (ModelState.IsValid)
+            {
+
+                user.hinhAVT = "def.jpg";
+
+
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+            }
+
+                
+            return View();
         }
     }
 }

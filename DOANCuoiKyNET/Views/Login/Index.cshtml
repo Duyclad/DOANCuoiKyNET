@@ -16,30 +16,89 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Họ</label>
-                            <input class="form-control" type="text" placeholder="Họ">
+                            <input class="form-control" id="houser" type="text" placeholder="Họ">
                         </div>
                         <div class="col-md-6">
                             <label>Tên"</label>
-                            <input class="form-control" type="text" placeholder="Tên">
+                            <input class="form-control" id="tenuser" type="text" placeholder="Tên">
                         </div>
                         <div class="col-md-6">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="E-mail">
+                            <input class="form-control" id="emailuser" type="text" placeholder="E-mail">
                         </div>
                         <div class="col-md-6">
                             <label>Số điện thoại</label>
-                            <input class="form-control" type="text" placeholder="Số điện thoại">
+                            <input class="form-control" id="sdtuser" type="text" placeholder="Số điện thoại">
                         </div>
+
+                        <div class="col-md-6">
+                            <label style="display:block">Ngày sinh</label>
+
+                            <select class="form-control" id="ngaysinh" style="width:73px;display:inline">
+                                <option value="1" selected="selected">1</option>
+
+                                <script>
+                                    var i;
+                                    // Lặp 10 lần từ 0 -> 9
+                                    // Bước nhảy là i++ nên sau mỗi lần lặp i tăng lên 1 đơn vị
+                                    for (i = 2; i <= 31; i++) {
+                                        document.write('<option value="' + i + '" >' + i + '</option>');
+                                    }
+                                </script>
+                            </select>
+
+
+                            <select class="form-control" id="thangsinh" style="width:122px;display:inline">
+                                <option value="1" selected="selected">Tháng 1</option>
+
+                                <script>
+                                    var i;
+                                    // Lặp 10 lần từ 0 -> 9
+                                    // Bước nhảy là i++ nên sau mỗi lần lặp i tăng lên 1 đơn vị
+                                    for (i = 2; i <= 12; i++) {
+                                        document.write('<option value="' + i + '" >Tháng ' + i + '</option>');
+                                    }
+                                </script>
+                            </select>
+
+                            <select class="form-control" id="namsinh" style="width:90px;display:inline">
+
+
+                                <script>
+
+                                    var i;
+                                    // Lặp 10 lần từ 0 -> 9
+                                    // Bước nhảy là i++ nên sau mỗi lần lặp i tăng lên 1 đơn vị
+                                    for (i = 2005; i >= 1950; i--) {
+                                        document.write('<option value="' + i + '" selected="selected">' + i + '</option>');
+                                    }
+                                </script>
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <label>Giới tính</label>
+                            <select class="form-control" id="gioiTinh">
+                                <option value="0" selected="selected">Không xác định</option>
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
+                            </select>
+                        </div>
+
                         <div class="col-md-6">
                             <label>Mật khẩu</label>
-                            <input class="form-control" type="text" placeholder="Mật khẩu">
+                            <input class="form-control" type="text" id="pwuser" placeholder="Mật khẩu">
                         </div>
                         <div class="col-md-6">
                             <label>Nhập lại mật khẩu</label>
-                            <input class="form-control" type="text" placeholder="Nhập lại mật khẩu">
+                            <input class="form-control" type="text" id="repwuser" placeholder="Nhập lại mật khẩu">
                         </div>
                         <div class="col-md-12">
-                            <button class="btn">Đăng ký</button>
+                            <button class="btn" id="dky">Đăng ký</button>
+                        </div>
+                        <div class="col-md-12" id="kqua2">
+                           
                         </div>
                     </div>
                 </div>
@@ -74,50 +133,9 @@
 </div>
 
 
-    <script>
-        $(document).ready(function () {
-            $("#submitlogin").click(function () {
-                
-                if ($("#emaillogin").val() == "" || $("#mkhaulogin").val() == "") {
-                    $("#kqua").html("Bạn chưa nhập đầy đủ thông tin!");
-                }
-                else {
-                    var x = navigator.appVersion;
-                    $.ajax({
-                        url: "Login/Verify",
-                        data: {
-                            email: $("#emaillogin").val().trim(),
-                            mkhau: $("#mkhaulogin").val().trim(),
-                            x: x,
-                        },
-                        type: "POST",
-                        success: function (data) {
-                            if (data == "users") {
-                                window.location = "Home";
-                            }
-                            else if (data == "admins") {
-                                window.location = "Admin/HomeAdmin"
-                            }
-                            else if (data == "staffs") {
-                                window.location = "Admin/HomeAdmin"
-                            }
-                            else {
-                                $("#kqua").html(data);
-
-                            }
-
-                        },
-                    });
-                }
-                
-                
-            });
 
 
-        });
-    </script>
-
-
+<script src="~/js/site.js"></script>
 
 
 <!-- Login End -->
