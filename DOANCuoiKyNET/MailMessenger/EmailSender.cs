@@ -50,8 +50,8 @@ namespace DOANCuoiKyNET.MailMessenger
                 catch
                 {
                     //log an error message or throw an exception or both.
-                    
-                    
+
+                    throw;
                     
                 }
                 finally

@@ -1,6 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{ 
+    Layout = "_FrontEnd";
 }
-<h1>test</h1>
+<div class="col-md-6">
+    <label>Nhập mã xác nhận</label>
+    <input class="form-control" id="maxacnhan" type="text" placeholder="Mã xác nhận">
+</div>
+<div class="col-md-12">
+    <button class="btn" id="xacnhan">Xác nhận</button>
+</div>
+<div id="kqua" style="color:red"></div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#xacnhan").click(function () {
+            $.ajax({
+
+                url: "Sendmail/Xacnhan",
+                data: {
+                    codex: $("#maxacnhan").val().trim(),
+                   
+                },
+                type: "POST",
+                success: function (data) {
+
+                    if (data == "0") {
+                        $("#kqua").html("Mã xác nhận chưa đúng!")
+                    }
+
+                },
+            }); 
+        });
+    });
+</script>

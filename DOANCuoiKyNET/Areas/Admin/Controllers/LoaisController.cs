@@ -29,6 +29,7 @@ namespace DOANCuoiKyNET.Controllers
             _context = context;
         }
 
+
         //GET Loais
         public IActionResult Index()
         {

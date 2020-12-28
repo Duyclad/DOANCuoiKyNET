@@ -26,8 +26,7 @@ namespace DOANCuoiKyNET.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.test = GetMD5("123456@").ToLower();
-
+           
             if (ssuser != null)
             {
                 ViewBag.houser = ssuser.hoUser;
@@ -80,6 +79,8 @@ namespace DOANCuoiKyNET.Controllers
            
         }
 
+        
+
         public sessionuser ssuser
         {
             get
@@ -92,6 +93,34 @@ namespace DOANCuoiKyNET.Controllers
                 return data;
             }
         }
+
+
+        public sessionuser tamp 
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<sessionuser>("tamp");
+                /* if (data == null)
+                  {
+                      data = new sessionuser();
+                  }*/
+                return data;
+            }
+        }
+
+        public Models.MaXacNhan mxn
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<Models.MaXacNhan>("mxns");
+                /* if (data == null)
+                  {
+                      data = new sessionuser();
+                  }*/
+                return data;
+            }
+        }
+
         private String GetMD5(string txt)
         {
             String str = "";
@@ -104,6 +133,8 @@ namespace DOANCuoiKyNET.Controllers
             }
             return str;
         }
+
+
         [HttpPost]
         public async Task<IActionResult> Verify(string email, string mkhau, string x)
         {
@@ -254,20 +285,85 @@ namespace DOANCuoiKyNET.Controllers
      
 
         [HttpPost]
-        public async Task<IActionResult> signup (User user)
+        public async Task<IActionResult> signup (string houser, string tenuser, string emailuser, string pwuser, string sdtuser, int gioiTinh,string ngaysinh,string x)
         {
-            if (ModelState.IsValid)
+            var dsus = _context.Users
+                   .SingleOrDefault(ipp => (ipp.emailUser == emailuser));
+            if (dsus != null)
             {
-
-                user.hinhAVT = "def.jpg";
-
-
-                _context.Add(user);
-                await _context.SaveChangesAsync();
+                ViewBag.mess = "1";
+                return View();
             }
 
+            DateTime myDate = DateTime.Parse(ngaysinh);
+            var ips = new IPuser();
+            if (ModelState.IsValid)
+            {
+                var users = new User();
+                ips.diachiip = x;
+                users.hinhAVT = "def.jpg";
+                users.hoUser = houser;
+                users.tenUser = tenuser;
+                users.sdtUser = sdtuser;
+                users.emailUser = emailuser;
+                users.matKhau = GetMD5(pwuser);
+                users.gioiTinh = gioiTinh;
+                users.ngaySinh = myDate;
+                users.ngayTao = DateTime.Now;
+                users.ngayCapNhat = DateTime.Now;
+                users.hoatDongLanCuoi = DateTime.Now;
+                users.trangThai = "Chờ xác nhận";
+
+                _context.Add(users);
+        
+                await _context.SaveChangesAsync();
                 
-            return RedirectToAction("index","Sendmail");
+            }
+            var dsusers = _context.Users
+                   .SingleOrDefault(ipp => (ipp.emailUser == emailuser));
+            string intrd;
+            Random random = new Random();
+            intrd = random.Next(100000, 999999).ToString();
+
+            var itemmxn =
+                              new Models.MaXacNhan
+                              {
+                                  code = intrd,
+                                  emails = emailuser,
+                                    
+                                  
+                              };
+
+            HttpContext.Session.Set("mxns", itemmxn);
+
+
+
+            var item =
+                              new sessionuser
+                              {
+
+                                  idUser =dsusers.idUser,
+                                  hoUser = houser,
+                                  tenUser = tenuser,
+                                  sdtUser = sdtuser,
+                                  emailUser = emailuser,
+                                  gioiTinh = gioiTinh,
+                                  ngaySinh = ngaysinh,
+                                  diaChi = "",
+                                  hinhAVT = "def.jpg",
+                                  vaitro = "users",
+                              };
+
+            HttpContext.Session.Set("tamp", item);
+            ips.idUser = dsusers.idUser;
+            _context.Add(ips);
+
+            await _context.SaveChangesAsync();
+            //return RedirectToAction("index", "Sendmail");
+            ViewBag.mess = "0";
+            return View();
         }
+
+      
     }
 }

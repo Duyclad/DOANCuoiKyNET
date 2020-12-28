@@ -84,14 +84,14 @@
                     $("#kqua2").html("Email không hợp lệ!");
                 }
                 else {
-                    if ($("#pwuser") != $("#repwuser")) {
+                    if ($("#pwuser").val() != $("#repwuser").val()) {
                         $("#kqua2").html("Mật khẩu không trùng khớp!");
                     }
                     else {
-
-                         $("#kqua2").html("OK")
+                        var x = navigator.appVersion;
+                        $("#kqua2").html("OK");
                                     $.ajax({
-                                        url: "Login/Signup",
+                                        url: "/Login/Signup",
                                         data: {
                                             emailuser: $("#emailuser").val().trim(),
                                             pwuser: $("#pwuser").val().trim(),
@@ -99,12 +99,18 @@
                                             tenuser: $("#tenuser").val().trim(),
                                             sdtuser: $("#sdtuser").val().trim(),
                                             gioiTinh: $("#gioiTinh").val().trim(),
-                                            ngaysinh: $("#namsinh").val().trim() + "-" + $("#thangsinh").val().trim() + "-" + $("#ngaysinh").val().trim(),
-
+                                            ngaysinh: "2020-12-20",
+                                            x: x,
                                         },
                                         type: "POST",
                                         success: function (data) {
-                        
+                                            if (data == "1") {
+                                                $("#kqua2").html("Tài khoản đã tồn tại, vui lòng đăng nhập!");
+                                            }
+                                            else {
+                                                window.location = "/Sendmail/";
+
+                                            }
 
                                         },
                                     });
