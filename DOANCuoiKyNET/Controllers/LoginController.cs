@@ -26,6 +26,7 @@ namespace DOANCuoiKyNET.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.test = GetMD5("123456@").ToLower();
 
             if (ssuser != null)
             {
@@ -91,12 +92,24 @@ namespace DOANCuoiKyNET.Controllers
                 return data;
             }
         }
-
+        private String GetMD5(string txt)
+        {
+            String str = "";
+            Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(txt);
+            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            buffer = md5.ComputeHash(buffer);
+            foreach (Byte b in buffer)
+            {
+                str += b.ToString("X2");
+            }
+            return str;
+        }
         [HttpPost]
         public async Task<IActionResult> Verify(string email, string mkhau, string x)
         {
             //  var myssuser = ssuser;
-
+            mkhau = GetMD5(mkhau).ToLower();
+           
             var dsAcc = _context.Users
                 .SingleOrDefault(acc => (acc.emailUser == email && acc.matKhau == mkhau) || (acc.sdtUser == email && acc.matKhau == mkhau));
             if (dsAcc != null) {
@@ -254,7 +267,7 @@ namespace DOANCuoiKyNET.Controllers
             }
 
                 
-            return View();
+            return RedirectToAction("index","Sendmail");
         }
     }
 }

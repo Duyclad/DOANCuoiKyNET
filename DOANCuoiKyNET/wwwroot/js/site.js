@@ -12,11 +12,15 @@
             }
             else {
                 var x = navigator.appVersion;
+             
+              
+             
                 $.ajax({
                     url: "Login/Verify",
                     data: {
                         email: $("#emaillogin").val().trim(),
                         mkhau: $("#mkhaulogin").val().trim(),
+                  
                         x: x,
                     },
                     type: "POST",
