@@ -89,7 +89,7 @@
                     }
                     else {
                         var x = navigator.appVersion;
-                        $("#kqua2").html("OK");
+                   
                                     $.ajax({
                                         url: "/Login/Signup",
                                         data: {
@@ -99,7 +99,9 @@
                                             tenuser: $("#tenuser").val().trim(),
                                             sdtuser: $("#sdtuser").val().trim(),
                                             gioiTinh: $("#gioiTinh").val().trim(),
-                                            ngaysinh: "2020-12-20",
+                                            ngaysinh: $("#ngaysinh").val().trim(),
+                                            thangsinh: $("#thangsinh").val().trim(),
+                                            namsinh: $("#namsinh").val().trim(),
                                             x: x,
                                         },
                                         type: "POST",

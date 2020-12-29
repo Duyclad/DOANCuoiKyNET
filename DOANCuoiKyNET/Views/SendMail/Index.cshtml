@@ -2,7 +2,7 @@
     Layout = "_FrontEnd";
 }
 <div class="col-md-6">
-    <label>Nhập mã xác nhận</label>
+    <label>Mã xác nhận đã được gửi về email của bạn. Vui lòng nhập mã xác nhận:</label>
     <input class="form-control" id="maxacnhan" type="text" placeholder="Mã xác nhận">
 </div>
 <div class="col-md-12">
@@ -10,13 +10,15 @@
 </div>
 <div id="kqua" style="color:red"></div>
 
+
 <script>
 
     $(document).ready(function () {
         $("#xacnhan").click(function () {
+            $("#kqua").html($("#maxacnhan").val().trim())
             $.ajax({
 
-                url: "Sendmail/Xacnhan",
+                url: "/Login/Xacnhan/",
                 data: {
                     codex: $("#maxacnhan").val().trim(),
                    
@@ -26,6 +28,9 @@
 
                     if (data == "0") {
                         $("#kqua").html("Mã xác nhận chưa đúng!")
+                    }
+                    else {
+                        window.location="/Home/index/"
                     }
 
                 },

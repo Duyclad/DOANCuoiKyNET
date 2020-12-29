@@ -63,7 +63,49 @@ namespace DOANCuoiKyNET.Controllers
 
             return View();
         }
-    
+
+
+        [HttpPost]
+        public async Task<IActionResult> XacNhan(string codex)
+        {
+
+            if (mxn.code == codex)
+            {
+                User item = _context.Users
+                    .FirstOrDefault(p => p.emailUser == mxn.emails);
+
+                item.trangThai = "Đang hoạt động";
+
+                _context.Update(item);
+                await _context.SaveChangesAsync();
+
+                sessionuser xx = tamp;
+                xx.trangThai = "Đang hoạt động";
+
+                HttpContext.Session.Set("ssuser", xx);
+
+                sessionuser xxx = xoatamp;
+     
+
+                HttpContext.Session.Set("tamp", xxx);
+
+                
+
+                Models.MaXacNhan session = xoass;
+                HttpContext.Session.Set("mxns", session);
+
+                return View();
+            }
+            else
+            {
+                ViewBag.mess = "0";
+                return View();
+            }
+
+
+        }
+
+
         public sessionuser Logoutss
         {
             get
@@ -108,6 +150,19 @@ namespace DOANCuoiKyNET.Controllers
             }
         }
 
+        public sessionuser xoatamp
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<sessionuser>("tamp");
+                 if (data == null)
+                  {
+                      data = new sessionuser();
+                  }
+                return data;
+            }
+        }
+
         public Models.MaXacNhan mxn
         {
             get
@@ -119,6 +174,21 @@ namespace DOANCuoiKyNET.Controllers
                   }*/
                 return data;
             }
+        }
+
+        public Models.MaXacNhan xoass
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<Models.MaXacNhan>("mxns");
+                if (data != null)
+                {
+                    data = null;
+                }
+                return data;
+
+            }
+
         }
 
         private String GetMD5(string txt)
@@ -285,7 +355,7 @@ namespace DOANCuoiKyNET.Controllers
      
 
         [HttpPost]
-        public async Task<IActionResult> signup (string houser, string tenuser, string emailuser, string pwuser, string sdtuser, int gioiTinh,string ngaysinh,string x)
+        public async Task<IActionResult> signup (string houser, string tenuser, string emailuser, string pwuser, string sdtuser, int gioiTinh,string ngaysinh,string thangsinh,string namsinh,string x)
         {
             var dsus = _context.Users
                    .SingleOrDefault(ipp => (ipp.emailUser == emailuser));
@@ -294,7 +364,7 @@ namespace DOANCuoiKyNET.Controllers
                 ViewBag.mess = "1";
                 return View();
             }
-
+            ngaysinh = namsinh + "-" + thangsinh + "-" + ngaysinh;
             DateTime myDate = DateTime.Parse(ngaysinh);
             var ips = new IPuser();
             if (ModelState.IsValid)
@@ -356,7 +426,8 @@ namespace DOANCuoiKyNET.Controllers
 
             HttpContext.Session.Set("tamp", item);
             ips.idUser = dsusers.idUser;
-            _context.Add(ips);
+
+             _context.Add(ips);
 
             await _context.SaveChangesAsync();
             //return RedirectToAction("index", "Sendmail");

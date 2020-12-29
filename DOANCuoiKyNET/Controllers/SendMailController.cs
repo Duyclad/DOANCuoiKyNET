@@ -35,20 +35,19 @@ namespace DOANCuoiKyNET.Controllers
             }
         }
 
-        [HttpGet]
         [Obsolete]
         public IActionResult Index()
         {
 
-            /*if (mxn==null)
+            if (mxn==null)
             {
                 return RedirectToAction("index", "Home");
-            }*/
+            }
             
 
-            var message = new Message(new string[] {"coleanhduy@gmail.com"}, "ok", "test");
+            var message = new Message(new string[] {mxn.emails}, "[GONZ Store] Mã xác nhận tài khoản", "Đây là mã xác nhận của bạn: " + mxn.code);
             _emailsender.SendEmail(message);
-
+         
             return View();
         }
 
@@ -67,26 +66,7 @@ namespace DOANCuoiKyNET.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult XacNhan(string codex)
-        {
-
-            if (mxn.code == codex)
-            {
-                Models.MaXacNhan session = xoass;
-                HttpContext.Session.Set("mxns",session);
-
-                return RedirectToAction("index", "Home");
-            }
-            else
-            {
-                ViewBag.mess = "0";
-                 return View();
-            }
-
-           
-        }
-
+        
 
     }
 

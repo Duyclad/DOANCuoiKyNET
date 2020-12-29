@@ -100,12 +100,12 @@
                                     $("#accmenu3").click(function () {
                                         $.ajax({
                                             url: "/Login/Logout",
-                                            type:"POST",
+                                            type: "POST",
                                             success: function () {
                                                 location.reload();
                                             }
                                         });
-                                        
+
                                     });
                                     if ($("#accmenu1").html() == "Thông tin cá nhân") {
                                         $("#accmenu1").attr('href', '/User');
@@ -124,7 +124,7 @@
                                     }
                                     else {
                                         $("#accmenu3").show();
-                                        
+
                                     }
 
                                     if ($("#accmenu4").html() == "") {
@@ -152,6 +152,7 @@
             </nav>
         </div>
     </div>
+    <script src="~/js/site.js"></script>
     <!-- Nav Bar End -->
     <!-- Bottom Bar Start -->
     <div class="bottom-bar">
@@ -160,7 +161,7 @@
                 <div class="col-md-3">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="~/ecommerce-html-template/img/gonzstore_logo.png" alt="Logo"/>
+                            <img src="~/ecommerce-html-template/img/gonzstore_logo.png" alt="Logo" />
                         </a>
                     </div>
                 </div>
@@ -189,7 +190,7 @@
 
 
     @RenderSection("breadcrum", required: false)
-    
+
 
     @RenderBody()
 

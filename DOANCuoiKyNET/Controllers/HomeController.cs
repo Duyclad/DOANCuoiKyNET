@@ -30,7 +30,7 @@ namespace DOANCuoiKyNET.Controllers
             
             if (ssuser != null)
             {
-                ViewBag.houser = ssuser.hoUser.ToUpper();
+                ViewBag.houser = ssuser.hoUser;
                 ViewBag.tenuser = ssuser.tenUser;
                 ViewBag.accmenu1 = "Thông tin cá nhân";
                 ViewBag.accmenu2 = "Đơn mua";

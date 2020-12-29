@@ -36,13 +36,14 @@ namespace DOANCuoiKyNET.MailMessenger
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
             return emailMessage;
         }
-        private void Send(MimeMessage mailMessage)
+
+        private  void Send(MimeMessage mailMessage)
         {
             using (var client = new SmtpClient())
             {
                 try
                 {
-                    client.Connect(_emailConfig.Smtpserver, _emailConfig.Port, MailKit.Security.SecureSocketOptions.StartTls);
+                    client.Connect(_emailConfig.Smtpserver, _emailConfig.Port, MailKit.Security.SecureSocketOptions.SslOnConnect);
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
                     client.Authenticate(_emailConfig.Username, _emailConfig.Password);
                     client.Send(mailMessage);
@@ -51,7 +52,6 @@ namespace DOANCuoiKyNET.MailMessenger
                 {
                     //log an error message or throw an exception or both.
 
-                    throw;
                     
                 }
                 finally
