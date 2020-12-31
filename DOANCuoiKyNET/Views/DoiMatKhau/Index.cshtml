@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     Layout = "_FrontEnd";
 }
 <div class="col-md-6">
@@ -9,7 +9,7 @@
     <button class="btn" id="xacnhan">Xác nhận</button>
 </div>
 <div id="kqua" style="color:red"></div>
-<input id="typemxn" value="@ViewBag.type" hidden/>
+<input id="typemxn" value="@ViewBag.type" />
 
 <script>
 
@@ -74,13 +74,13 @@
                             $("#kqua").html("Mã xác nhận chưa đúng!")
                         }
                         else {
-                            window.location = "/DoiMatKhau/";
+                            window.location = "/DoiMatKhau/index/";
                         }
 
                     },
                 });
             }
-            
+
         });
     });
 </script>

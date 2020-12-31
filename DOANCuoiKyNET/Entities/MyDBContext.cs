@@ -29,7 +29,7 @@ namespace DOANCuoiKyNET.Entities
         public DbSet<LuotMua> LuotMuas { get; set; }
         public DbSet<LuotThich> LuotThiches { get; set; }
         public DbSet<MaGiamGia> MaGiamGias { get; set; }
-        public DbSet<MaXacNhan> MaXacNhans { get; set; }
+ 
         public DbSet<NhanVien> NhanViens { get; set; }
         public DbSet<QuanTri> QuanTris { get; set; }
         public DbSet<QuyDinhChung> QuyDinhChungs { get; set; }

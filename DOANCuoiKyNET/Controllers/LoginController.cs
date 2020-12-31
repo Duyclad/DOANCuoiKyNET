@@ -106,6 +106,47 @@ namespace DOANCuoiKyNET.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> XacNhanTrinhDuyet(string codex, string x)
+        {
+            if (mxn.code == codex)
+            {
+
+
+                IPuser puser = new IPuser();
+                puser.diachiip = x;
+                puser.idUser = tamp.idUser;
+
+                _context.Add(puser);
+                await _context.SaveChangesAsync();
+
+
+                sessionuser xx = tamp;
+                
+                HttpContext.Session.Set("ssuser", xx);
+
+                sessionuser xxx = xoatamp;
+
+
+                HttpContext.Session.Set("tamp", xxx);
+
+
+
+                Models.MaXacNhan session = xoass;
+                HttpContext.Session.Set("mxns", session);
+
+
+
+
+                return View();
+            }
+            else
+            {
+                ViewBag.mess = "0";
+                return View();
+            }
+        }
+
         public sessionuser Logoutss
         {
             get
@@ -206,14 +247,24 @@ namespace DOANCuoiKyNET.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Verify(string email, string mkhau, string x)
+        public  IActionResult Verify(string email, string mkhau, string x)
         {
             //  var myssuser = ssuser;
             mkhau = GetMD5(mkhau).ToLower();
            
             var dsAcc = _context.Users
                 .SingleOrDefault(acc => (acc.emailUser == email && acc.matKhau == mkhau) || (acc.sdtUser == email && acc.matKhau == mkhau));
+            
+            
             if (dsAcc != null) {
+
+                if (dsAcc.trangThai=="Đang khóa")
+                {
+                    ViewBag.mess = "Tài khoản đang bị khóa!";
+                    return View();
+                }
+
+                
                 /*
                                 IPHostEntry iphost = Dns.GetHostEntry(Dns.GetHostName());
                                 string ipadd = Convert.ToString(iphost.AddressList.FirstOrDefault(address => address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork));
@@ -222,12 +273,130 @@ namespace DOANCuoiKyNET.Controllers
                     .SingleOrDefault(ipp => (ipp.idUser == dsAcc.idUser && ipp.diachiip == x));
                 if (dsIp == null)
                 {
-                    IPuser puser = new IPuser();
-                    puser.diachiip = x;
-                    puser.idUser = dsAcc.idUser;
+                    string intrd;
+                    Random random = new Random();
+                    intrd = random.Next(100000, 999999).ToString();
 
-                    _context.Add(puser);
-                    await _context.SaveChangesAsync();
+                    var itemmxn =
+                                      new Models.MaXacNhan
+                                      {
+                                          code = intrd,
+                                          emails = dsAcc.emailUser,
+                                          type="1" //Trinhduyetla
+
+                                      };
+
+                    HttpContext.Session.Set("mxns", itemmxn);
+                    var dsusers = _context.Users
+                  .SingleOrDefault(ipp => (ipp.emailUser == email));
+
+                    var dsnvs = _context.NhanViens
+                  .SingleOrDefault(ipp => (ipp.idUser==dsusers.idUser));
+
+                    var dsqtris = _context.Users
+                  .SingleOrDefault(ipp => (ipp.idUser==dsusers.idUser));
+                    var item =
+                              new sessionuser
+                              {
+
+                                  idUser = dsusers.idUser,
+                                  hoUser = dsusers.hoUser,
+                                  tenUser =dsusers.tenUser,
+                                  sdtUser = dsusers.sdtUser,
+                                  emailUser = dsusers.emailUser,
+                                  gioiTinh = dsusers.gioiTinh,
+                                  ngaySinh = dsusers.ngaySinh.ToString(),
+                                  diaChi = dsusers.diaChi,
+                                  hinhAVT =dsusers.hinhAVT,
+                                  trangThai=dsusers.trangThai
+                      
+                              };
+
+                    if (dsnvs != null)
+                    {
+                        item.vaitro = "staffs";
+                    }
+
+                    else if (dsqtris != null)
+                    {
+                        item.vaitro = "admin";
+                    }
+                    else
+                    {
+                        item.vaitro = "users";
+                    }
+
+
+                    HttpContext.Session.Set("tamp", item);
+
+                    ViewBag.mess = "sendmail";
+                    return View();
+                }
+
+
+                if (dsAcc.trangThai == "Chờ xác nhận")
+                {
+                    string intrd;
+                    Random random = new Random();
+                    intrd = random.Next(100000, 999999).ToString();
+
+                    var itemmxn =
+                                      new Models.MaXacNhan
+                                      {
+                                          code = intrd,
+                                          emails = dsAcc.emailUser,
+                                          type = "0" //Xacnhanmail
+
+                                      };
+                    HttpContext.Session.Set("mxns", itemmxn);
+
+                    var dsusers = _context.Users
+                  .SingleOrDefault(ipp => (ipp.emailUser == email));
+
+                    var dsnvs = _context.NhanViens
+                  .SingleOrDefault(ipp => (ipp.idUser == dsusers.idUser));
+
+                    var dsqtris = _context.Users
+                  .SingleOrDefault(ipp => (ipp.idUser == dsusers.idUser));
+
+                    var item =
+                            new sessionuser
+                            {
+
+                                idUser = dsusers.idUser,
+                                hoUser = dsusers.hoUser,
+                                tenUser = dsusers.tenUser,
+                                sdtUser = dsusers.sdtUser,
+                                emailUser = dsusers.emailUser,
+                                gioiTinh = dsusers.gioiTinh,
+                                ngaySinh = dsusers.ngaySinh.ToString(),
+                                diaChi = dsusers.diaChi,
+                                hinhAVT = dsusers.hinhAVT,
+                                trangThai = dsusers.trangThai
+
+                            };
+
+                    if (dsnvs != null)
+                    {
+                        item.vaitro = "staffs";
+                    }
+
+                    else if (dsqtris != null)
+                    {
+                        item.vaitro = "admin";
+                    }
+                    else
+                    {
+                        item.vaitro = "users";
+                    }
+
+
+                    HttpContext.Session.Set("tamp", item);
+
+                    ViewBag.mess = "sendmail";
+                    return View();
+
+
 
                 }
 
@@ -376,7 +545,7 @@ namespace DOANCuoiKyNET.Controllers
                 users.tenUser = tenuser;
                 users.sdtUser = sdtuser;
                 users.emailUser = emailuser;
-                users.matKhau = GetMD5(pwuser);
+                users.matKhau = GetMD5(pwuser).ToLower();
                 users.gioiTinh = gioiTinh;
                 users.ngaySinh = myDate;
                 users.ngayTao = DateTime.Now;
@@ -400,7 +569,7 @@ namespace DOANCuoiKyNET.Controllers
                               {
                                   code = intrd,
                                   emails = emailuser,
-                                    
+                                  type = "0",
                                   
                               };
 
@@ -435,6 +604,96 @@ namespace DOANCuoiKyNET.Controllers
             return View();
         }
 
-      
+
+
+
+
+
+        public IActionResult QuenMatKhau()
+        {
+
+            return View();
+        }
+
+       
+        [HttpPost]
+        public IActionResult CheckQuenMatKhau(string email)
+        {
+            var dsAcc = _context.Users
+               .SingleOrDefault(acc => acc.emailUser == email);
+
+
+
+            if (dsAcc != null)
+            {
+                if (dsAcc.trangThai == "Đang khóa")
+                {
+                    ViewBag.mess = "Tài khoản đang bị khóa!";
+                    return View();
+                }
+
+
+                var item =
+                             new sessionuser
+                             {
+
+                                 idUser = dsAcc.idUser,
+                                 hoUser = dsAcc.hoUser,
+                                 tenUser = dsAcc.tenUser,
+                                 sdtUser = dsAcc.sdtUser,
+                                 emailUser = dsAcc.emailUser,
+                                 gioiTinh = dsAcc.gioiTinh,
+                                 ngaySinh = dsAcc.ngaySinh.ToString(),
+                                 diaChi = dsAcc.diaChi,
+                                 hinhAVT = dsAcc.hinhAVT,
+                                 trangThai = dsAcc.trangThai
+
+                             };
+
+              
+
+                var dsnvs = _context.NhanViens
+              .SingleOrDefault(ipp => (ipp.idUser == dsAcc.idUser));
+
+                var dsqtris = _context.Users
+              .SingleOrDefault(ipp => (ipp.idUser == dsAcc.idUser));
+
+                if (dsnvs != null)
+                {
+                    item.vaitro = "staffs";
+                }
+
+                else if (dsqtris != null)
+                {
+                    item.vaitro = "admin";
+                }
+                else
+                {
+                    item.vaitro = "users";
+                }
+
+
+                HttpContext.Session.Set("tamp", item);
+
+                ViewBag.mess = "sendmail";
+                return View();
+
+
+
+            }
+            else
+            {
+                ViewBag.mess = "0";
+
+
+            }
+                return View();
+            
+        }
+
+
+
+
+
     }
 }

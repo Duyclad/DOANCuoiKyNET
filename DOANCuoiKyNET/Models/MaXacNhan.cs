@@ -15,5 +15,6 @@ namespace DOANCuoiKyNET.Models
         
         
         public string emails { get; set; }
+        public string type { get; set; }
     }
 }

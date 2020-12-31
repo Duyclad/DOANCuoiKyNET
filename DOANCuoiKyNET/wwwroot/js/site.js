@@ -29,10 +29,13 @@
                             window.location = "Home";
                         }
                         else if (data == "admins") {
-                            window.location = "Admin/HomeAdmin"
+                            window.location = "/Admin/HomeAdmin"
                         }
                         else if (data == "staffs") {
-                            window.location = "Admin/HomeAdmin"
+                            window.location = "/Staffs/HomeStaffs"
+                        }
+                        else if (data == "sendmail") {
+                            window.location = "/Sendmail/index/"
                         }
                         else {
                             $("#kqua").html(data);

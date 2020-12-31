@@ -91,7 +91,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@ViewBag.houser @ViewBag.tenuser</a>
                             <div class="dropdown-menu">
                                 <a href="#" id="accmenu4" class="dropdown-item">@ViewBag.accmenu4</a>
-                                <a href="Login" id="accmenu1" class="dropdown-item">@ViewBag.accmenu1</a>
+                                <a href="/Login/" id="accmenu1" class="dropdown-item">@ViewBag.accmenu1</a>
                                 <a href="#" id="accmenu2" class="dropdown-item">@ViewBag.accmenu2</a>
                                 <a href="#" id="accmenu3" class="dropdown-item">@ViewBag.accmenu3</a>
                             </div>
@@ -108,7 +108,7 @@
 
                                     });
                                     if ($("#accmenu1").html() == "Thông tin cá nhân") {
-                                        $("#accmenu1").attr('href', '/User');
+                                        $("#accmenu1").attr('href', '/User/');
                                     }
 
                                     if ($("#accmenu2").html() == "") {
@@ -116,7 +116,7 @@
                                     }
                                     else {
                                         $("#accmenu2").show();
-                                        $("#accmenu2").attr('href', '/Order');
+                                        $("#accmenu2").attr('href', '/Order/');
                                     }
 
                                     if ($("#accmenu3").html() == "") {

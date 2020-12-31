@@ -48,6 +48,16 @@ namespace DOANCuoiKyNET.Controllers
             var message = new Message(new string[] {mxn.emails}, "[GONZ Store] Mã xác nhận tài khoản", "Đây là mã xác nhận của bạn: " + mxn.code);
             _emailsender.SendEmail(message);
          
+            if (mxn.type == "0")
+            {
+                ViewBag.type = "0";
+                ViewBag.tieude = "Mã xác nhận đã được gửi về email của bạn. Vui lòng nhập mã xác nhận:";
+            }
+            else if (mxn.type == "1")
+            {
+                ViewBag.tieude = "Chúng tôi phát hiện bạn đăng nhập từ trình duyệt lạ, do đó chúng tôi đã gửi mã xác nhận về email của bạn. Vui lòng nhập mã xác nhận:";
+                ViewBag.type = "1";
+            }
             return View();
         }
 

@@ -77,7 +77,7 @@ namespace DOANCuoiKyNET.Entities
         public ICollection<ChinhSachTraHangVaHoanTien> ChinhSachTraHangVaHoanTiens { get; set; }
         public ICollection<QuyDinhChung> QuyDinhChungs { get; set; }
         public ICollection<ChinhSachGiaoHang> ChinhSachGiaoHangs { get; set; }
-        public ICollection<MaXacNhan> MaXacNhans { get; set; }
+   
         public ICollection<GioHang> GioHangs { get; set; }
         public ICollection<IPuser> IPusers { get; set; }
         public User()
@@ -103,7 +103,7 @@ namespace DOANCuoiKyNET.Entities
             ChinhSachTraHangVaHoanTiens = new HashSet<ChinhSachTraHangVaHoanTien>();
             QuyDinhChungs = new HashSet<QuyDinhChung>();
             ChinhSachGiaoHangs = new HashSet<ChinhSachGiaoHang>();
-            MaXacNhans = new HashSet<MaXacNhan>();
+         
             GioHangs = new HashSet<GioHang>();
             IPusers = new HashSet<IPuser>();
         }
