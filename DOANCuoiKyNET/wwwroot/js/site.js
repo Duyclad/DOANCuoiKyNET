@@ -16,7 +16,7 @@
               
              
                 $.ajax({
-                    url: "Login/Verify",
+                    url: "/Login/Verify/",
                     data: {
                         email: $("#emaillogin").val().trim(),
                         mkhau: $("#mkhaulogin").val().trim(),

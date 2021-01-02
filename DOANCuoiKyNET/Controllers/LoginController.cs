@@ -107,6 +107,44 @@ namespace DOANCuoiKyNET.Controllers
 
 
         [HttpPost]
+        public  IActionResult XacNhanQMK(string codex)
+        {
+            if (mxn.code == codex)
+            {
+
+
+
+                /*
+
+                sessionuser xx = tamp;
+                
+                HttpContext.Session.Set("ssuser", xx);
+
+                sessionuser xxx = xoatamp;
+
+
+                HttpContext.Session.Set("tamp", xxx);
+
+
+
+                Models.MaXacNhan session = xoass;
+                HttpContext.Session.Set("mxns", session);*/
+
+                Models.MaXacNhan session = xoass;
+                HttpContext.Session.Set("mxns", session);
+
+
+                return View();
+            }
+            else
+            {
+                ViewBag.mess = "0";
+                return View();
+            }
+        }
+
+
+        [HttpPost]
         public async Task<IActionResult> XacNhanTrinhDuyet(string codex, string x)
         {
             if (mxn.code == codex)
@@ -122,7 +160,7 @@ namespace DOANCuoiKyNET.Controllers
 
 
                 sessionuser xx = tamp;
-                
+
                 HttpContext.Session.Set("ssuser", xx);
 
                 sessionuser xxx = xoatamp;
@@ -146,6 +184,7 @@ namespace DOANCuoiKyNET.Controllers
                 return View();
             }
         }
+
 
         public sessionuser Logoutss
         {
@@ -674,6 +713,23 @@ namespace DOANCuoiKyNET.Controllers
 
 
                 HttpContext.Session.Set("tamp", item);
+
+
+                string intrd;
+                Random random = new Random();
+                intrd = random.Next(100000, 999999).ToString();
+
+                var itemmxn =
+                                  new Models.MaXacNhan
+                                  {
+                                      code = intrd,
+                                      emails = dsAcc.emailUser,
+                                      type = "2" //Quen mat khau
+
+                                      };
+
+                HttpContext.Session.Set("mxns", itemmxn);
+
 
                 ViewBag.mess = "sendmail";
                 return View();

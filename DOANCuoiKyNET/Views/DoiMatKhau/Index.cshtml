@@ -2,32 +2,35 @@
     Layout = "_FrontEnd";
 }
 <div class="col-md-6">
-    <label>@ViewBag.tieude</label>
-    <input class="form-control" id="maxacnhan" type="text" placeholder="Mã xác nhận">
+    <label>Nhập mật khẩu mới</label>
+    <input class="form-control" id="qmk" type="text" placeholder="Nhập mật khẩu mới">
+    <input class="form-control" id="reqmk" type="text" placeholder="Nhập lại mật khẩu mới">
 </div>
 <div class="col-md-12">
     <button class="btn" id="xacnhan">Xác nhận</button>
 </div>
 <div id="kqua" style="color:red"></div>
-<input id="typemxn" value="@ViewBag.type" />
+
 
 <script>
 
     $(document).ready(function () {
         $("#xacnhan").click(function () {
-            if ($("#typemxn").val() == "0") {
+            if ($("#qmk").val() != $("#reqmk").val()) {
+                $("#kqua").html("Mật khẩu không trùng khớp!")
+            } else {
                 $.ajax({
 
-                    url: "/Login/Xacnhan/",
+                    url: "/DoiMatKhau/LuuMatKhau/",
                     data: {
-                        codex: $("#maxacnhan").val().trim(),
+                        qmk: $("#qmk").val().trim(),
 
                     },
                     type: "POST",
                     success: function (data) {
 
                         if (data == "0") {
-                            $("#kqua").html("Mã xác nhận chưa đúng!")
+                            $("#kqua").html("Đổi mật khẩu không thành công!")
                         }
                         else {
                             window.location = "/Home/index/"
@@ -37,49 +40,9 @@
                 });
 
             }
-            else if ($("#typemxn").val() == "1") {
-                var x = navigator.appVersion;
-                $.ajax({
-
-                    url: "/Login/XacnhanTrinhDuyet/",
-                    data: {
-                        codex: $("#maxacnhan").val().trim(),
-                        x: x,
-                    },
-                    type: "POST",
-                    success: function (data) {
-
-                        if (data == "0") {
-                            $("#kqua").html("Mã xác nhận chưa đúng!")
-                        }
-                        else {
-                            window.location = "/Home/index/"
-                        }
-
-                    },
-                });
-            }
-            else {
-                $.ajax({
-
-                    url: "/Login/CheckQuenMatKhau/",
-                    data: {
-                        codex: $("#maxacnhan").val().trim(),
-                        x: x,
-                    },
-                    type: "POST",
-                    success: function (data) {
-
-                        if (data == "0") {
-                            $("#kqua").html("Mã xác nhận chưa đúng!")
-                        }
-                        else {
-                            window.location = "/DoiMatKhau/index/";
-                        }
-
-                    },
-                });
-            }
+           
+             
+            
 
         });
     });

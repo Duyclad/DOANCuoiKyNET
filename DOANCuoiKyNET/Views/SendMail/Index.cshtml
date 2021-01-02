@@ -62,10 +62,10 @@
             else {
                 $.ajax({
 
-                    url: "/Login/CheckQuenMatKhau/",
+                    url: "/Login/XacnhanQMK/",
                     data: {
                         codex: $("#maxacnhan").val().trim(),
-                        x: x,
+       
                     },
                     type: "POST",
                     success: function (data) {
@@ -74,7 +74,7 @@
                             $("#kqua").html("Mã xác nhận chưa đúng!")
                         }
                         else {
-                            window.location = "/DoiMatKhau/";
+                            window.location = "/DoiMatKhau/index/";
                         }
 
                     },

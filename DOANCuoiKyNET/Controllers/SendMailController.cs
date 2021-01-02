@@ -58,6 +58,11 @@ namespace DOANCuoiKyNET.Controllers
                 ViewBag.tieude = "Chúng tôi phát hiện bạn đăng nhập từ trình duyệt lạ, do đó chúng tôi đã gửi mã xác nhận về email của bạn. Vui lòng nhập mã xác nhận:";
                 ViewBag.type = "1";
             }
+            else
+            {
+                ViewBag.tieude = "Mã xác nhận đã được gửi về email của bạn. Vui lòng nhập mã xác nhận:";
+                ViewBag.type = "2";
+            }
             return View();
         }
 
