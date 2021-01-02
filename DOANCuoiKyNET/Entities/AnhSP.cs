@@ -11,9 +11,8 @@ namespace DOANCuoiKyNET.Entities
 
         [Key]
         public int idAnhSP { get; set; }
-        public int idHinhAnh { get; set; }
-        [ForeignKey("idHinhAnh")]
-        public HinhAnh HinhAnh { get; set; }
+        public int linkAnh { get; set; }
+       
         
         public int idSP { get; set; }
         [ForeignKey("idSP")]

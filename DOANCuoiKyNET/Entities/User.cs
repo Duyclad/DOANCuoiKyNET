@@ -68,7 +68,7 @@ namespace DOANCuoiKyNET.Entities
 
         public ICollection<ChiTietTTSP> ChiTietTTSPs { get; set; }
 
-        public ICollection<HinhAnh> HinhAnhs { get; set; }
+
         public ICollection<BanDo> BanDos { get; set; }
         public ICollection<GioiThieu> GioiThieus  { get; set; }
 
@@ -95,7 +95,7 @@ namespace DOANCuoiKyNET.Entities
             LuotThiches = new HashSet<LuotThich>();
             ThuocTinhSPs = new HashSet<ThuocTinhSP>();
             ChiTietTTSPs = new HashSet<ChiTietTTSP>();
-            HinhAnhs = new HashSet<HinhAnh>();
+        
             BanDos = new HashSet<BanDo>();
             GioiThieus = new HashSet<GioiThieu>();
             ChinhSachQuyenRiengTus = new HashSet<ChinhSachQuyenRiengTu>();

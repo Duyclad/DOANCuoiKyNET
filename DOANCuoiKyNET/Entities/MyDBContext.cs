@@ -22,7 +22,7 @@ namespace DOANCuoiKyNET.Entities
         public DbSet<DonHang> DonHangs { get; set; }
         public DbSet<GioHang> GioHangs { get; set; }
         public DbSet<GioiThieu> GioiThieus { get; set; }
-        public DbSet<HinhAnh> HinhAnhs { get; set; }
+
         public DbSet<IPuser> IPusers { get; set; }
         public DbSet<LienHe> LienHes { get; set; }
         public DbSet<LoaiSP> LoaiSPs { get; set; }
