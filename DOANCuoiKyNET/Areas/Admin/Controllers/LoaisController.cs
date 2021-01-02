@@ -57,20 +57,48 @@ namespace DOANCuoiKyNET.Controllers
 
         //GET Loais/Details/5
 
-        public async Task<IActionResult> Details (int? id)
+        public IActionResult Details(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
+            /*
             var loai = await _context.LoaiSPs
                 .FirstOrDefaultAsync(m => m.idLoaiSP == id);
-            if (loai == null)
+            */
+
+
+            var loaispx
+                = from p in _context.LoaiSPs
+                  join c in _context.Users on p.idUser equals c.idUser
+                  where p.idLoaiSP == id
+                  select new User_Loai
+                  {
+                      idLoaiSP = p.idLoaiSP,
+                      hinhAnh = p.hinhAnh,
+                      tenLoaiSP = p.tenLoaiSP,
+
+                      metaTitle = p.metaTitle,
+                      trangThai = p.trangThai,
+                      ngayTao = p.ngayTao,
+                      ngayCapNhat = p.ngayCapNhat,
+                      hoUser = c.hoUser,
+                      tenUser = c.tenUser
+                  };
+
+
+
+
+            if (loaispx == null)
             {
                 return NotFound();
             }
-            return View(loai);
+
+            return View(loaispx);
         }
+
+
 
         // GET: Loais/Create
         public IActionResult Create()
@@ -136,19 +164,40 @@ namespace DOANCuoiKyNET.Controllers
         }
 
         // GET: Loais/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var loai = await _context.LoaiSPs.FindAsync(id);
-            if (loai == null)
+            var loaispx = await _context.LoaiSPs.FindAsync(id);
+/*
+            var loaispx
+              = from p in _context.LoaiSPs
+                join c in _context.Users on p.idUser equals c.idUser
+                where p.idLoaiSP == id
+                select new User_Loai
+                {
+                    idLoaiSP = p.idLoaiSP,
+                    hinhAnh = p.hinhAnh,
+                    tenLoaiSP = p.tenLoaiSP,
+
+                    metaTitle = p.metaTitle,
+                    trangThai = p.trangThai,
+                    ngayTao = p.ngayTao,
+                    ngayCapNhat = p.ngayCapNhat,
+                    hoUser = c.hoUser,
+                    tenUser = c.tenUser
+                };
+*/
+
+
+            if (loaispx == null)
             {
                 return NotFound();
             }
-            return View(loai);
+            return View(loaispx);
         }
 
         // POST: Loais/Edit/5
@@ -156,18 +205,66 @@ namespace DOANCuoiKyNET.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idLoaiSP,tenLoaiSP,hinhAnh,metaTitle,trangThai,ngayTao,ngayCapNhat,idUser")] LoaiSP loai)
+        public async Task<IActionResult> Edit(int id, LoaiSP loai, IFormFile hinhAnh)
         {
             if (id != loai.idLoaiSP)
             {
                 return NotFound();
             }
 
+            var loaix = _context.LoaiSPs
+                .FirstOrDefault(p => p.idLoaiSP == id);
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(loai);
+                    if (hinhAnh == null)
+                    {
+                        loaix.tenLoaiSP = loai.tenLoaiSP;
+
+                        loaix.metaTitle = loai.metaTitle;
+
+                        loaix.trangThai = loai.trangThai;
+
+
+
+
+
+                        loaix.ngayCapNhat = DateTime.Now;
+
+                    }
+                    else
+                    {
+                        loaix.tenLoaiSP = loai.tenLoaiSP;
+
+                        loaix.metaTitle = loai.metaTitle;
+
+                        loaix.trangThai = loai.trangThai;
+
+                        loaix.ngayCapNhat = DateTime.Now;
+
+                        string format = "yyyy_MM_dd_HH_mm_ss";
+
+                        DateTime now = DateTime.Now;
+
+                        string s = now.ToString(format) + ".jpg";
+
+                        var urlfull = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "loaisp", s);
+                        using (var file = new FileStream(urlfull, FileMode.Create))
+                        {
+                            await hinhAnh.CopyToAsync(file);
+                        }
+
+                        loaix.hinhAnh = s;
+
+
+
+                    }
+
+
+
+                    _context.Update(loaix);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -182,27 +279,50 @@ namespace DOANCuoiKyNET.Controllers
                         throw;
                     }
                 }
+
+
+
+
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(loai);
         }
 
         // GET: Loais/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var loai = await _context.LoaiSPs
-                .FirstOrDefaultAsync(m => m.idLoaiSP == id);
-            if (loai == null)
+            /* var loai = await _context.LoaiSPs
+                 .FirstOrDefaultAsync(m => m.idLoaiSP == id);*/
+            var loaispx
+                 = from p in _context.LoaiSPs
+                   join c in _context.Users on p.idUser equals c.idUser
+                   where p.idLoaiSP == id
+                   select new User_Loai
+                   {
+                       idLoaiSP = p.idLoaiSP,
+                       hinhAnh = p.hinhAnh,
+                       tenLoaiSP = p.tenLoaiSP,
+
+                       metaTitle = p.metaTitle,
+                       trangThai = p.trangThai,
+                       ngayTao = p.ngayTao,
+                       ngayCapNhat = p.ngayCapNhat,
+                       hoUser = c.hoUser,
+                       tenUser = c.tenUser
+                   };
+
+            if (loaispx == null)
             {
                 return NotFound();
             }
 
-            return View(loai);
+            return View(loaispx);
         }
 
         // POST: Loais/Delete/5
