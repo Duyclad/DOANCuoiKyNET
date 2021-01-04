@@ -42,6 +42,8 @@ namespace DOANCuoiKyNET.Entities
 
         public string trangThai { get; set; }
 
+        public string vaiTro { get; set; }
+
         public ICollection<Banner> Banners { get; set; }
 
         public ICollection<ThuongHieu> ThuongHieus { get; set; }
@@ -54,9 +56,6 @@ namespace DOANCuoiKyNET.Entities
 
         public ICollection<DanhGiaSP> DanhGiaSPs { get; set; }
 
-        public ICollection<NhanVien> NhanViens { get; set; }
-
-        public ICollection<QuanTri> QuanTris { get; set; }
 
         public ICollection<DonHang> DonHangs { get; set; }
 
@@ -88,8 +87,7 @@ namespace DOANCuoiKyNET.Entities
             SanPhams = new HashSet<SanPham>();
             MaGiamGias = new HashSet<MaGiamGia>();
             DanhGiaSPs = new HashSet<DanhGiaSP>();
-            NhanViens = new HashSet<NhanVien>();
-            QuanTris = new HashSet<QuanTri>();
+      
             DonHangs = new HashSet<DonHang>();
             LuotMuas = new HashSet<LuotMua>();
             LuotThiches = new HashSet<LuotThich>();

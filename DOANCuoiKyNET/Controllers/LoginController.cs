@@ -329,8 +329,8 @@ namespace DOANCuoiKyNET.Controllers
                     var dsusers = _context.Users
                   .SingleOrDefault(ipp => (ipp.emailUser == email));
 
-                    var dsnvs = _context.NhanViens
-                  .SingleOrDefault(ipp => (ipp.idUser==dsusers.idUser));
+                    var dsnvs = _context.Users
+                  .SingleOrDefault(ipp => ipp.vaiTro=="staffs");
 
                     var dsqtris = _context.Users
                   .SingleOrDefault(ipp => (ipp.idUser==dsusers.idUser));
@@ -392,8 +392,8 @@ namespace DOANCuoiKyNET.Controllers
                     var dsusers = _context.Users
                   .SingleOrDefault(ipp => (ipp.emailUser == email));
 
-                    var dsnvs = _context.NhanViens
-                  .SingleOrDefault(ipp => (ipp.idUser == dsusers.idUser));
+                    var dsnvs = _context.Users
+                  .SingleOrDefault(ipp => ipp.vaiTro=="staffs");
 
                     var dsqtris = _context.Users
                   .SingleOrDefault(ipp => (ipp.idUser == dsusers.idUser));
@@ -442,8 +442,8 @@ namespace DOANCuoiKyNET.Controllers
 
                 var admins
     = from p in _context.Users
-      join c in _context.QuanTris on p.idUser equals c.idUser
-      where p.emailUser == email
+
+      where p.emailUser == email && p.vaiTro == "admin"
       select new
       {
           tenUser = p.tenUser,
@@ -475,8 +475,8 @@ namespace DOANCuoiKyNET.Controllers
                 {
                     var staffs
                 = from p in _context.Users
-                  join c in _context.NhanViens on p.idUser equals c.idUser
-                  where p.emailUser == email
+          
+                  where p.emailUser == email && p.vaiTro=="staffs"
                   select new
                   {
                       tenUser = p.tenUser,
@@ -591,7 +591,7 @@ namespace DOANCuoiKyNET.Controllers
                 users.ngayCapNhat = DateTime.Now;
                 users.hoatDongLanCuoi = DateTime.Now;
                 users.trangThai = "Chờ xác nhận";
-
+                users.vaiTro = "users";
                 _context.Add(users);
         
                 await _context.SaveChangesAsync();
@@ -691,8 +691,8 @@ namespace DOANCuoiKyNET.Controllers
 
               
 
-                var dsnvs = _context.NhanViens
-              .SingleOrDefault(ipp => (ipp.idUser == dsAcc.idUser));
+                var dsnvs = _context.Users
+              .SingleOrDefault(ipp => ipp.vaiTro=="staffs");
 
                 var dsqtris = _context.Users
               .SingleOrDefault(ipp => (ipp.idUser == dsAcc.idUser));

@@ -2,90 +2,89 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "_BackEndAdmin";
 }
+<div id="content-wrapper" class="d-flex flex-column" style="padding:20px">
+    <h1>Chỉnh sửa thông tin tài khoản</h1>
 
-<h1>Edit</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="idUser" />
+                <div class="form-group">
+                    <label asp-for="hoUser" class="control-label">Họ</label>
+                    <input asp-for="hoUser" class="form-control" />
+                    <span asp-validation-for="hoUser" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="tenUser" class="control-label">Tên</label>
+                    <input asp-for="tenUser" class="form-control" />
+                    <span asp-validation-for="tenUser" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="sdtUser" class="control-label">Số điện thoại</label>
+                    <input asp-for="sdtUser" class="form-control" />
+                    <span asp-validation-for="sdtUser" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="emailUser" class="control-label">Email</label>
+                    <input asp-for="emailUser" class="form-control" />
+                    <span asp-validation-for="emailUser" class="text-danger"></span>
+                </div>
 
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="idUser" />
-            <div class="form-group">
-                <label asp-for="hoUser" class="control-label"></label>
-                <input asp-for="hoUser" class="form-control" />
-                <span asp-validation-for="hoUser" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="tenUser" class="control-label"></label>
-                <input asp-for="tenUser" class="form-control" />
-                <span asp-validation-for="tenUser" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="sdtUser" class="control-label"></label>
-                <input asp-for="sdtUser" class="form-control" />
-                <span asp-validation-for="sdtUser" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="emailUser" class="control-label"></label>
-                <input asp-for="emailUser" class="form-control" />
-                <span asp-validation-for="emailUser" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="matKhau" class="control-label"></label>
-                <input asp-for="matKhau" class="form-control" />
-                <span asp-validation-for="matKhau" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="gioiTinh" class="control-label"></label>
-                <input asp-for="gioiTinh" class="form-control" />
-                <span asp-validation-for="gioiTinh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ngaySinh" class="control-label"></label>
-                <input asp-for="ngaySinh" class="form-control" />
-                <span asp-validation-for="ngaySinh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="diaChi" class="control-label"></label>
-                <input asp-for="diaChi" class="form-control" />
-                <span asp-validation-for="diaChi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="hinhAVT" class="control-label"></label>
-                <input asp-for="hinhAVT" class="form-control" />
-                <span asp-validation-for="hinhAVT" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ngayTao" class="control-label"></label>
-                <input asp-for="ngayTao" class="form-control" />
-                <span asp-validation-for="ngayTao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ngayCapNhat" class="control-label"></label>
-                <input asp-for="ngayCapNhat" class="form-control" />
-                <span asp-validation-for="ngayCapNhat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="hoatDongLanCuoi" class="control-label"></label>
-                <input asp-for="hoatDongLanCuoi" class="form-control" />
-                <span asp-validation-for="hoatDongLanCuoi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="trangThai" class="control-label"></label>
-                <input asp-for="trangThai" class="form-control" />
-                <span asp-validation-for="trangThai" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <label asp-for="gioiTinh" class="control-label">Giới tính</label>
+                    <select asp-for="gioiTinh" class="form-control">
+                        <option value="0" selected="selected">Không xác định</option>
+                        <option value="1">Nam</option>
+                        <option value="2">Nữ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ngaySinh" class="control-label"></label>
+                    <input asp-for="ngaySinh" class="form-control" />
+                    <span asp-validation-for="ngaySinh" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="diaChi" class="control-label"></label>
+                    <input asp-for="diaChi" class="form-control" />
+                    <span asp-validation-for="diaChi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="hinhAVT" class="control-label">Hình ảnh</label>
+                    <input name="hinhAnh" type="file" class="form-control" />
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="trangThai" class="control-label">Trạng thái</label>
+                    <select asp-for="trangThai" class="form-control">
+                        <option value="Đang hoạt động" selected="selected">Đang hoạt động</option>
+                        <option value="Đang khóa">Đang khóa</option>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="vaiTro" class="control-label">Vai trò</label>
+                    <select asp-for="vaiTro" class="form-control">
+                        <option value="users" selected="selected">Người dùng</option>
+                        <option value="staffs">Nhân viên</option>
+                        <option value="admin">Quản trị</option>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
+    </div>
