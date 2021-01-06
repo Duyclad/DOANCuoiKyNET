@@ -42,7 +42,7 @@ namespace DOANCuoiKyNET.Controllers
                       idLoaiSP = p.idLoaiSP,
                       hinhAnh = p.hinhAnh,
                  tenLoaiSP = p.tenLoaiSP,
-                
+                typeLoai=p.typeLoai,
                  metaTitle = p.metaTitle,
                  trangThai = p.trangThai,
                  ngayTao = p.ngayTao,
@@ -78,7 +78,7 @@ namespace DOANCuoiKyNET.Controllers
                       idLoaiSP = p.idLoaiSP,
                       hinhAnh = p.hinhAnh,
                       tenLoaiSP = p.tenLoaiSP,
-
+                      typeLoai=p.typeLoai,
                       metaTitle = p.metaTitle,
                       trangThai = p.trangThai,
                       ngayTao = p.ngayTao,
@@ -227,7 +227,7 @@ namespace DOANCuoiKyNET.Controllers
 
                         loaix.trangThai = loai.trangThai;
 
-
+                        loaix.typeLoai = loai.typeLoai;
 
 
 
@@ -237,6 +237,7 @@ namespace DOANCuoiKyNET.Controllers
                     else
                     {
                         loaix.tenLoaiSP = loai.tenLoaiSP;
+                        loaix.typeLoai = loai.typeLoai;
 
                         loaix.metaTitle = loai.metaTitle;
 
@@ -308,7 +309,7 @@ namespace DOANCuoiKyNET.Controllers
                        idLoaiSP = p.idLoaiSP,
                        hinhAnh = p.hinhAnh,
                        tenLoaiSP = p.tenLoaiSP,
-
+                       typeLoai = p.typeLoai,
                        metaTitle = p.metaTitle,
                        trangThai = p.trangThai,
                        ngayTao = p.ngayTao,
@@ -352,7 +353,7 @@ namespace DOANCuoiKyNET.Controllers
                             idLoaiSP = p.idLoaiSP,
                             hinhAnh = p.hinhAnh,
                             tenLoaiSP = p.tenLoaiSP,
-                            
+                            typeLoai=p.typeLoai,
                             metaTitle = p.metaTitle,
                             trangThai = p.trangThai,
                             ngayTao = p.ngayTao,
@@ -372,7 +373,7 @@ namespace DOANCuoiKyNET.Controllers
                              idLoaiSP = p.idLoaiSP,
                              hinhAnh = p.hinhAnh,
                              tenLoaiSP = p.tenLoaiSP,
-                            
+                            typeLoai=p.typeLoai,
                              metaTitle = p.metaTitle,
                              trangThai = p.trangThai,
                              ngayTao = p.ngayTao,

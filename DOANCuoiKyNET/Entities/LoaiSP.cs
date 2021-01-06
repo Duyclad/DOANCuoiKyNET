@@ -20,7 +20,7 @@ namespace DOANCuoiKyNET.Entities
         public string metaTitle { get; set; }
         
  
-
+        public string typeLoai { get; set; }
         public string trangThai { get; set; }
 
         public DateTime ngayTao { get; set; }
@@ -32,11 +32,6 @@ namespace DOANCuoiKyNET.Entities
 
         
 
-        public ICollection<LoaiSPcon> LoaiSPcons { get; set; }
-        public LoaiSP()
-        {
-            
-            LoaiSPcons = new HashSet<LoaiSPcon>();
-        }
+
     }
 }

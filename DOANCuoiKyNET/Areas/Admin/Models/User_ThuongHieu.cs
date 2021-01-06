@@ -5,21 +5,26 @@ using System.Threading.Tasks;
 
 namespace DOANCuoiKyNET.Areas.Admin.Models
 {
-    
-    public class User_Loai
+    public class User_ThuongHieu
     {
-        public int idLoaiSP { get; set; }
+        public int idThuongHieu { get; set; }
+       
+        public string tenThuongHieu { get; set; }
+       
+        public string hinhLogo { get; set; }
 
-        public string hinhAnh { get; set; }
-        public string tenLoaiSP { get; set; }
-        public int type { get; set; }
-        public string metaTitle { get; set; }
+        public string sdtThuongHieu { get; set; }
+       
+        public string emailThuongHieu { get; set; }
 
         public string trangThai { get; set; }
+
         public DateTime ngayTao { get; set; }
+
         public DateTime ngayCapNhat { get; set; }
+
         public string hoUser { get; set; }
+        
         public string tenUser { get; set; }
-        public string typeLoai { get; set; }
     }
 }

@@ -59,12 +59,12 @@ namespace DOANCuoiKyNET.Entities
         
         public ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
 
-        public ICollection<TraHang> TraHangs { get; set; }
+
 
         public DonHang()
         {
             ChiTietDonHangs = new HashSet<ChiTietDonHang>();
-            TraHangs = new HashSet<TraHang>();
+
         }
     }
 }

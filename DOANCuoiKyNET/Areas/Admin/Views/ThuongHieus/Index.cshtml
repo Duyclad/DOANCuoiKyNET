@@ -1,12 +1,9 @@
-﻿@model  IEnumerable<DOANCuoiKyNET.Areas.Admin.Models.User_Loai>
+﻿@model IEnumerable<DOANCuoiKyNET.Areas.Admin.Models.User_ThuongHieu>
 
-  
 @{
-    ViewData["Title"] = "LoaisController";
+    ViewData["Title"] = "Index";
     Layout = "_BackEndAdmin";
 }
-
-
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -87,33 +84,27 @@
         <!-- End of Topbar -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-            <h1>Loại Sản Phẩm (Cha)</h1>
+            <h1>Index</h1>
 
             <p>
-                <a asp-action="Create">Thêm mới</a>
+                <a asp-action="Create">Create New</a>
             </p>
             <table class="table">
                 <thead>
                     <tr>
                         <th>
-                            Hình ảnh
-                        </th>
-
-                        <th>
-                            Tên loại
+                            Tên thương hiệu
                         </th>
                         <th>
-                            Loại cha
-                        </th>
-
-
-                        <th>
-                            Tiêu đề Web
+                            Logo
                         </th>
                         <th>
-                            Trạng thái
+                            SĐT
                         </th>
+                        <th>
+                            Email
+                        </th>
+                    
                         <th>
                             Ngày tạo
                         </th>
@@ -126,49 +117,42 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="kqua">
+                <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tenThuongHieu)
+                            </td>
+                            <td>
+                                <img src="~/images/logo/@Html.DisplayFor(modelItem => item.hinhLogo)" style="width:80px; height:80px" />
 
-                        <td>
-                            <img src="~/images/loaisp/@Html.DisplayFor(modelItem => item.hinhAnh)" style="width:50px;height:75px " alt="@Html.DisplayFor(modelItem => item.tenLoaiSP)" />
-
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tenLoaiSP)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.typeLoai)
-                        </td>
-
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.metaTitle)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.trangThai)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ngayTao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ngayCapNhat)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.hoUser) @Html.DisplayFor(modelItem => item.tenUser)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.idLoaiSP">Sửa</a> |
-                            <a asp-action="Details" asp-route-id="@item.idLoaiSP">Xem</a> |
-                            <a asp-action="Delete" asp-route-id="@item.idLoaiSP">Xóa</a>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sdtThuongHieu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.emailThuongHieu)
+                            </td>
+                     
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ngayTao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ngayCapNhat)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hoUser) @Html.DisplayFor(modelItem => item.tenUser)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.idThuongHieu">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.idThuongHieu">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.idThuongHieu">Delete</a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
-
-
         </div>
         <!-- /.container-fluid -->
 

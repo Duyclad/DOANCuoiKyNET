@@ -18,9 +18,7 @@ namespace DOANCuoiKyNET.Entities
         public string hinhAnh { get; set; }
         public DateTime ngayTao { get; set; }
         public DateTime ngayCapNhat { get; set; }
-        public int idUser { get; set; }
-        [ForeignKey("idUser")]
-        public User User { get; set; }
+       
 
     }
 }

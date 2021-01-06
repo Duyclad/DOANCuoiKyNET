@@ -144,7 +144,7 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
 
 
         // GET: Loais/Edit/5
-        public async Task<IActionResult> EditAsync(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -283,6 +283,71 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.idUser == id);
+        }
+
+
+
+        // GET: Loais/Delete/5
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            /* var loai = await _context.LoaiSPs
+                 .FirstOrDefaultAsync(m => m.idLoaiSP == id);*/
+            var xx = _context.Users
+                .FirstOrDefault(p => p.idUser == id);
+
+            if (xx == null)
+            {
+                return NotFound();
+            }
+
+            return View(xx);
+        }
+
+        // POST: Loais/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var loai = await _context.Users.FindAsync(id);
+            //_context.Loais.Remove(loai);
+            _context.Remove(loai);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+        //GET Loais/Details/5
+
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            /*
+            var loai = await _context.LoaiSPs
+                .FirstOrDefaultAsync(m => m.idLoaiSP == id);
+            */
+
+
+            var xx = _context.Users
+                .FirstOrDefault(p => p.idUser == id);
+
+
+
+
+            if (xx == null)
+            {
+                return NotFound();
+            }
+
+            return View(xx);
         }
 
 

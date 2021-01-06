@@ -54,26 +54,23 @@ namespace DOANCuoiKyNET.Entities
 
         public ICollection<MaGiamGia> MaGiamGias { get; set; }
 
-        public ICollection<DanhGiaSP> DanhGiaSPs { get; set; }
+
 
 
         public ICollection<DonHang> DonHangs { get; set; }
 
-        public ICollection<LuotMua> LuotMuas { get; set; }
 
-        public ICollection<LuotThich> LuotThiches { get; set; }
-
-        public ICollection<ThuocTinhSP> ThuocTinhSPs { get; set; }
-
-        public ICollection<ChiTietTTSP> ChiTietTTSPs { get; set; }
+  
 
 
-        public ICollection<BanDo> BanDos { get; set; }
+
+
+
         public ICollection<GioiThieu> GioiThieus  { get; set; }
 
-        public ICollection<ChinhSachQuyenRiengTu> ChinhSachQuyenRiengTus { get; set; }
+      
         public ICollection<DieuKhoanDichVu> DieuKhoanDichVus { get; set; }
-        public ICollection<ChinhSachTraHangVaHoanTien> ChinhSachTraHangVaHoanTiens { get; set; }
+       
         public ICollection<QuyDinhChung> QuyDinhChungs { get; set; }
         public ICollection<ChinhSachGiaoHang> ChinhSachGiaoHangs { get; set; }
    
@@ -86,19 +83,18 @@ namespace DOANCuoiKyNET.Entities
             LoaiSPs = new HashSet<LoaiSP>();
             SanPhams = new HashSet<SanPham>();
             MaGiamGias = new HashSet<MaGiamGia>();
-            DanhGiaSPs = new HashSet<DanhGiaSP>();
+
       
             DonHangs = new HashSet<DonHang>();
-            LuotMuas = new HashSet<LuotMua>();
-            LuotThiches = new HashSet<LuotThich>();
-            ThuocTinhSPs = new HashSet<ThuocTinhSP>();
-            ChiTietTTSPs = new HashSet<ChiTietTTSP>();
-        
-            BanDos = new HashSet<BanDo>();
+
+     
+     
+
+       
             GioiThieus = new HashSet<GioiThieu>();
-            ChinhSachQuyenRiengTus = new HashSet<ChinhSachQuyenRiengTu>();
+         
             DieuKhoanDichVus = new HashSet<DieuKhoanDichVu>();
-            ChinhSachTraHangVaHoanTiens = new HashSet<ChinhSachTraHangVaHoanTien>();
+            
             QuyDinhChungs = new HashSet<QuyDinhChung>();
             ChinhSachGiaoHangs = new HashSet<ChinhSachGiaoHang>();
          

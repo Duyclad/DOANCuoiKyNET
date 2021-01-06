@@ -26,6 +26,21 @@
 
                 </div>
                 <div class="form-group">
+
+                    <label asp-for="typeLoai" class="control-label">Loại cha</label>
+
+
+
+                    <select asp-for="typeLoai" class="form-control">
+                        <option value="Thời trang nam" selected="selected">Thời trang nam</option>
+                        <option value="Thời trang nữ">Thời trang nữ</option>
+
+                    </select>
+
+
+                    
+                </div>
+                <div class="form-group">
                     <label asp-for="metaTitle" class="control-label">Tiêu đề Web</label>
                     <input asp-for="metaTitle" class="form-control" />
                     <span asp-validation-for="metaTitle" class="text-danger"></span>
@@ -35,16 +50,16 @@
                 <div class="form-group">
 
                     <label asp-for="trangThai" class="control-label">Trạng thái</label>
-                   
 
 
-                    <select  asp-for="trangThai" class="form-control" >
+
+                    <select asp-for="trangThai" class="form-control">
                         <option value="Hiển thị" selected="selected">Hiển thị</option>
                         <option value="Ẩn">Ẩn</option>
 
                     </select>
-                     
-                    
+
+
                     <span asp-validation-for="trangThai" class="text-danger"></span>
                 </div>
 

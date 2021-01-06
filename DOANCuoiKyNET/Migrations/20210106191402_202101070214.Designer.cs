@@ -4,14 +4,16 @@ using DOANCuoiKyNET.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DOANCuoiKyNET.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210106191402_202101070214")]
+    partial class _202101070214
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,11 +28,11 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("UseridUser")
-                        .HasColumnType("int");
-
                     b.Property<string>("hinhAnh")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idUser")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ngayBatDau")
                         .HasColumnType("datetime2");
@@ -47,7 +49,7 @@ namespace DOANCuoiKyNET.Migrations
 
                     b.HasKey("idBanner");
 
-                    b.HasIndex("UseridUser");
+                    b.HasIndex("idUser");
 
                     b.ToTable("Banner");
                 });
@@ -94,11 +96,11 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("UseridUser")
-                        .HasColumnType("int");
-
                     b.Property<string>("hinhAnh")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idUser")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ngayCapNhat")
                         .HasColumnType("datetime2");
@@ -114,7 +116,7 @@ namespace DOANCuoiKyNET.Migrations
 
                     b.HasKey("idChinhSachGiaoHang");
 
-                    b.HasIndex("UseridUser");
+                    b.HasIndex("idUser");
 
                     b.ToTable("ChinhSachGiaoHang");
                 });
@@ -126,11 +128,11 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("UseridUser")
-                        .HasColumnType("int");
-
                     b.Property<string>("hinhAnh")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idUser")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ngayCapNhat")
                         .HasColumnType("datetime2");
@@ -146,7 +148,7 @@ namespace DOANCuoiKyNET.Migrations
 
                     b.HasKey("idDieuKhoanDV");
 
-                    b.HasIndex("UseridUser");
+                    b.HasIndex("idUser");
 
                     b.ToTable("DieuKhoanDichVu");
                 });
@@ -244,8 +246,8 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("SanPhamidSP")
-                        .HasColumnType("int");
+                    b.Property<string>("hinhSP")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("idSP")
                         .HasColumnType("int");
@@ -253,12 +255,18 @@ namespace DOANCuoiKyNET.Migrations
                     b.Property<int>("idUser")
                         .HasColumnType("int");
 
+                    b.Property<string>("phanLoai")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("soLuong")
                         .HasColumnType("int");
 
+                    b.Property<string>("tenSP")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("idGioHang");
 
-                    b.HasIndex("SanPhamidSP");
+                    b.HasIndex("idSP");
 
                     b.HasIndex("idUser");
 
@@ -272,10 +280,10 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("UseridUser")
+                    b.Property<int>("hinhAnh")
                         .HasColumnType("int");
 
-                    b.Property<int>("hinhAnh")
+                    b.Property<int>("idUser")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ngayCapNhat")
@@ -292,7 +300,7 @@ namespace DOANCuoiKyNET.Migrations
 
                     b.HasKey("idGioiThieu");
 
-                    b.HasIndex("UseridUser");
+                    b.HasIndex("idUser");
 
                     b.ToTable("GioiThieu");
                 });
@@ -402,10 +410,13 @@ namespace DOANCuoiKyNET.Migrations
                     b.Property<string>("codeMGG")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("UseridUser")
+                    b.Property<int>("giaTri")
                         .HasColumnType("int");
 
-                    b.Property<int>("giaTri")
+                    b.Property<int>("idUser")
+                        .HasColumnType("int");
+
+                    b.Property<int>("loaiMGG")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ngayCapNhat")
@@ -426,7 +437,7 @@ namespace DOANCuoiKyNET.Migrations
 
                     b.HasKey("codeMGG");
 
-                    b.HasIndex("UseridUser");
+                    b.HasIndex("idUser");
 
                     b.ToTable("MaGiamGia");
                 });
@@ -438,11 +449,11 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("UseridUser")
-                        .HasColumnType("int");
-
                     b.Property<string>("hinhAnh")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idUser")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ngayCapNhat")
                         .HasColumnType("datetime2");
@@ -458,7 +469,7 @@ namespace DOANCuoiKyNET.Migrations
 
                     b.HasKey("idQuyDinhChung");
 
-                    b.HasIndex("UseridUser");
+                    b.HasIndex("idUser");
 
                     b.ToTable("QuyDinhChung");
                 });
@@ -470,12 +481,6 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ThuongHieuidThuongHieu")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UseridUser")
-                        .HasColumnType("int");
-
                     b.Property<int>("giaSP")
                         .HasColumnType("int");
 
@@ -486,6 +491,12 @@ namespace DOANCuoiKyNET.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("idLoaiSP")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idThuongHieu")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idUser")
                         .HasColumnType("int");
 
                     b.Property<int>("luotMua")
@@ -520,11 +531,11 @@ namespace DOANCuoiKyNET.Migrations
 
                     b.HasKey("idSP");
 
-                    b.HasIndex("ThuongHieuidThuongHieu");
-
-                    b.HasIndex("UseridUser");
-
                     b.HasIndex("idLoaiSP");
+
+                    b.HasIndex("idThuongHieu");
+
+                    b.HasIndex("idUser");
 
                     b.ToTable("SanPham");
                 });
@@ -637,9 +648,11 @@ namespace DOANCuoiKyNET.Migrations
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.Banner", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.User", null)
+                    b.HasOne("DOANCuoiKyNET.Entities.User", "User")
                         .WithMany("Banners")
-                        .HasForeignKey("UseridUser");
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.ChiTietDonHang", b =>
@@ -653,16 +666,20 @@ namespace DOANCuoiKyNET.Migrations
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.ChinhSachGiaoHang", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.User", null)
+                    b.HasOne("DOANCuoiKyNET.Entities.User", "User")
                         .WithMany("ChinhSachGiaoHangs")
-                        .HasForeignKey("UseridUser");
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.DieuKhoanDichVu", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.User", null)
+                    b.HasOne("DOANCuoiKyNET.Entities.User", "User")
                         .WithMany("DieuKhoanDichVus")
-                        .HasForeignKey("UseridUser");
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.DonHang", b =>
@@ -678,9 +695,11 @@ namespace DOANCuoiKyNET.Migrations
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.GioHang", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.SanPham", null)
+                    b.HasOne("DOANCuoiKyNET.Entities.SanPham", "SanPham")
                         .WithMany("GioHangs")
-                        .HasForeignKey("SanPhamidSP");
+                        .HasForeignKey("idSP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DOANCuoiKyNET.Entities.User", "User")
                         .WithMany("GioHangs")
@@ -691,9 +710,11 @@ namespace DOANCuoiKyNET.Migrations
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.GioiThieu", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.User", null)
+                    b.HasOne("DOANCuoiKyNET.Entities.User", "User")
                         .WithMany("GioiThieus")
-                        .HasForeignKey("UseridUser");
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.IPuser", b =>
@@ -716,31 +737,39 @@ namespace DOANCuoiKyNET.Migrations
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.MaGiamGia", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.User", null)
+                    b.HasOne("DOANCuoiKyNET.Entities.User", "User")
                         .WithMany("MaGiamGias")
-                        .HasForeignKey("UseridUser");
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.QuyDinhChung", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.User", null)
+                    b.HasOne("DOANCuoiKyNET.Entities.User", "User")
                         .WithMany("QuyDinhChungs")
-                        .HasForeignKey("UseridUser");
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DOANCuoiKyNET.Entities.SanPham", b =>
                 {
-                    b.HasOne("DOANCuoiKyNET.Entities.ThuongHieu", null)
-                        .WithMany("SanPhams")
-                        .HasForeignKey("ThuongHieuidThuongHieu");
-
-                    b.HasOne("DOANCuoiKyNET.Entities.User", null)
-                        .WithMany("SanPhams")
-                        .HasForeignKey("UseridUser");
-
                     b.HasOne("DOANCuoiKyNET.Entities.LoaiSP", "LoaiSP")
                         .WithMany()
                         .HasForeignKey("idLoaiSP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DOANCuoiKyNET.Entities.ThuongHieu", "ThuongHieu")
+                        .WithMany("SanPhams")
+                        .HasForeignKey("idThuongHieu")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DOANCuoiKyNET.Entities.User", "User")
+                        .WithMany("SanPhams")
+                        .HasForeignKey("idUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
