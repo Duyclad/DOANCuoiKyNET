@@ -8,6 +8,7 @@ namespace DOANCuoiKyNET.Entities
     [Table("SanPham")]
     public class SanPham
     {
+       
         [Key]
         public int idSP { get; set; }
         [Required]
@@ -16,16 +17,15 @@ namespace DOANCuoiKyNET.Entities
 
         public int giaSP { get; set; }
 
-        public int giamGiaSP { get; set; }
+     
        
         public string hinhAnh { get; set; }
-        [Required]
-        public string metaTitle { get; set; }
+       
 
         public int luotXem { get; set; }
         
         public int soLuongKho { get; set; }
-        [Required]
+    
         
         public int luotMua { get; set; }
         public string moTa { get; set; }

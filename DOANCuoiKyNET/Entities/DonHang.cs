@@ -33,29 +33,22 @@ namespace DOANCuoiKyNET.Entities
         [MaxLength(10)]
         public string sdtDH { get; set; }
 
-        public string ipMayKhach { get; set; }
-
+       
         public string ghiChu { get; set; }
 
         public int tongTienHang { get; set; }
 
         public string maGiamGiaDH { get; set; }
         
-        public string maGiamGiaShip { get; set; }
+ 
 
-        public int phiShip { get; set; }
 
         public int tongSoTien { get; set; }
 
         public string trangThai { get; set; }
 
-        public string idUser { get; set; }
-        [ForeignKey("idUser")]
-        public string idNVCSKH { get; set; }
-
-        public string idNVShip { get; set; }
-
-        public User User { get; set; }
+        public int idUser { get; set; }
+       
         
         public ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
 

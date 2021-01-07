@@ -168,7 +168,7 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
                 {
                     xx.ngayBatDau = user.ngayBatDau;
                     xx.ngayKetThuc = user.ngayKetThuc;
-                    
+                    xx.url = user.url;
                      
 
                 }
@@ -189,7 +189,7 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
                     }
 
                     xx.hinhAnh = s;
-
+                    xx.url = user.url;
                     xx.ngayBatDau = user.ngayBatDau;
                     xx.ngayKetThuc = user.ngayKetThuc;
 
