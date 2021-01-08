@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DOANCuoiKyNET.Entities.LienHe>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.hoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.eMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tieuDe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.noiDung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ngayGui)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ngayCapNhat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.trangThai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eMail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.noiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngayGui)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngayCapNhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.trangThai)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.idLH">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.idLH">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.idLH">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

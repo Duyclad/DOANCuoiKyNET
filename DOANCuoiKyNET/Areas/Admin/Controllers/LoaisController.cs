@@ -164,7 +164,7 @@ namespace DOANCuoiKyNET.Controllers
         }
 
         // GET: Loais/Edit/5
-        public async Task<IActionResult> EditAsync(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {

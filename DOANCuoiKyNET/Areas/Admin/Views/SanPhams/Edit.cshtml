@@ -1,18 +1,19 @@
 ﻿@model DOANCuoiKyNET.Entities.SanPham
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "_BackEndAdmin";
 }
 <div id="content-wrapper" class="d-flex flex-column" style="padding:20px">
-    <h1>Create</h1>
+    <h1>Edit</h1>
 
     <h4>SanPham</h4>
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Create" enctype="multipart/form-data">
+            <form asp-action="Edit" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="idSP" />
                 <div class="form-group">
                     <label asp-for="tenSP" class="control-label"></label>
                     <input asp-for="tenSP" class="form-control" />
@@ -20,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="giaSP" class="control-label"></label>
-                    <input asp-for="giaSP" class="form-control" value="0" />
+                    <input asp-for="giaSP" class="form-control" />
                     <span asp-validation-for="giaSP" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -30,7 +31,7 @@
 
                 <div class="form-group">
                     <label asp-for="soLuongKho" class="control-label"></label>
-                    <input asp-for="soLuongKho" class="form-control" value="0" />
+                    <input asp-for="soLuongKho" class="form-control" />
                     <span asp-validation-for="soLuongKho" class="text-danger"></span>
                 </div>
 
@@ -44,8 +45,6 @@
                     <select asp-for="idLoaiSP" class="form-control" id="loadloai">
                     </select>
                 </div>
-
-
                 <div class="form-group">
                     <label asp-for="trangThai" class="control-label"></label>
                     <select asp-for="trangThai" class="form-control">
@@ -56,7 +55,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Save" class="btn btn-primary" />
                 </div>
             </form>
         </div>
@@ -68,19 +67,19 @@
 
     <script>
         $(document).ready(function () {
-           
-                $.ajax({
-                    url: "/Admin/Sanphams/LoadLoai/",
-                
-                    success: function (data) {
-                        $("#loadloai").html(data);
-                    },
+
+            $.ajax({
+                url: "/Admin/Sanphams/LoadLoai/",
+
+                success: function (data) {
+                    $("#loadloai").html(data);
+                },
 
 
-                });
-         
+            });
+
 
 
         });
     </script>
-</div>
+    </div>

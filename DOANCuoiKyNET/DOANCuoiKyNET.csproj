@@ -25,7 +25,6 @@
     <Folder Include="wwwroot\images\loaisp\" />
     <Folder Include="wwwroot\images\logo\" />
     <Folder Include="wwwroot\images\banner\" />
-    <Folder Include="wwwroot\images\sanpham\" />
   </ItemGroup>
 
 </Project>
