@@ -5,6 +5,138 @@
 
 (function ($) {
     $(document).ready(function () {
+        $.ajax({
+            url: "/LoaiSP/LoaiTTNam/",
+            type:"POST",
+            success: function (data) {
+                $("#loadloaimenuTTNam").html(data);
+            },
+
+
+        });
+
+        $.ajax({
+            url: "/sanpham/sanphamnoibat/",
+            type: "POST",
+            success: function (data) {
+                $("#dsspnoibat").html(data);
+            },
+
+
+        });
+
+        $.ajax({
+            url: "/Sanpham/sanphambanchay/",
+            type: "POST",
+            success: function (data) {
+                $("#dsspbanchay").html(data);
+            },
+
+
+        });
+
+        $.ajax({
+            url: "/Sanpham/sanphammoi/",
+            type: "POST",
+            success: function (data) {
+                $("#dsspmoi").html(data);
+            },
+
+
+        });
+
+        $.ajax({
+            url: "/Banner/index/",
+            type:"POST",
+            success: function (data) {
+                $("#loaditembanner").html(data);
+            },
+
+
+        });
+
+        $.ajax({
+            url: "/LoaiSP/LoaiTTNu/",
+            type:"POST",
+            success: function (data) {
+                $("#loadloaimenuTTNu").html(data);
+            },
+
+
+        });
+
+        $("#timkiemdssp").keyup(function () {
+            $.ajax({
+                url: "/Sanpham/TimAjax/",
+                data: {
+                    keyword: $("#timkiemdssp").val().trim(),
+                    kw2: $("#dssp2").val().trim(),
+                    kw3: $("#dssp3").val().trim(),
+                    idloai: $("#idloaidssp").val().trim(),
+                },
+                type: "POST",
+                success: function (data) {
+                    $("#kquadssp").html(data);
+                }
+            });
+        });
+
+
+        $("#submitlh").click(function () {
+            $.ajax({
+                url: "/Lienhe/indexadd/",
+                data: {
+                    hoten: $("#hotenlh").val().trim(),
+                    email: $("#emaillh").val().trim(),
+                    tieude: $("#tieudelh").val().trim(),
+                    noidung: $("#noidunglh").val().trim(),
+                },
+                type: "POST",
+                success: function (data) {
+                   
+                }
+            });
+        });
+
+
+        $("#tka").click(function () {
+            window.location = "/sanpham/timkiem/" + $("#timkiemmain").val();
+        });
+
+        $("#dssp2").change(function () {
+            $.ajax({
+                url: "/Sanpham/TimAjax/",
+                data: {
+                    keyword: $("#timkiemdssp").val().trim(),
+                    kw2: $("#dssp2").val().trim(),
+                    kw3: $("#dssp3").val().trim(),
+                    idloai: $("#idloaidssp").val().trim(),
+                },
+                type: "POST",
+                success: function (data) {
+                    $("#kquadssp").html(data);
+                }
+            });
+        });
+
+        $("#dssp3").change(function () {
+            $.ajax({
+                url: "/Sanpham/TimAjax/",
+                data: {
+                    keyword: $("#timkiemdssp").val().trim(),
+                    kw2: $("#dssp2").val().trim(),
+                    kw3: $("#dssp3").val().trim(),
+                    idloai: $("#idloaidssp").val().trim(),
+                },
+                type: "POST",
+                success: function (data) {
+                    $("#kquadssp").html(data);
+                }
+            });
+        });
+
+        
+
         $("#submitlogin").click(function () {
 
             if ($("#emaillogin").val() == "" || $("#mkhaulogin").val() == "") {

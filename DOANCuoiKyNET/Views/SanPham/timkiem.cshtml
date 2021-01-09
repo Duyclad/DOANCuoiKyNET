@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DOANCuoiKyNET.Entities.SanPham>
+
+@{
+    ViewData["Title"] = "timkiem";
+    Layout = "_FrontEnd";
+}
+<div class="product-view">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    
+
+                    <div id="kquadssp" class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-3">
+                                <div class="product-item">
+                                    <div class="product-title">
+                                        <a href="/sanpham/chitiet/@item.idSP/">@Html.DisplayFor(modelItem => item.tenSP)</a>
+
+                                    </div>
+                                    <div class="product-image">
+                                        <a href="/sanpham/chitiet/@item.idSP/">
+                                            <img src="~/images/sanpham/@Html.DisplayFor(modelItem => item.hinhAnh)" alt="Product Image">
+                                        </a>
+                                        <div class="product-action">
+                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <h3>@Html.DisplayFor(modelItem => item.giaSP) đ</h3>
+                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <!-- Pagination Start -->
+                <div class="col-md-12">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Pagination Start -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<input hidden value="@ViewBag.mess" id="idloaidssp" />
+

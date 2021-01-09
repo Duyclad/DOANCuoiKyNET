@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DOANCuoiKyNET.Entities.SanPham>
+
+@{
+    ViewData["Title"] = "TimAjax";
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+<div class="col-md-3">
+    <div class="product-item">
+        <div class="product-title">
+            <a href="/sanpham/chitiet/@item.idSP/">@Html.DisplayFor(modelItem => item.tenSP)</a>
+
+        </div>
+        <div class="product-image">
+            <a href="/sanpham/chitiet/@item.idSP">
+                <img src="~/images/sanpham/@Html.DisplayFor(modelItem => item.hinhAnh)" alt="Product Image">
+            </a>
+            <div class="product-action">
+                <a href="#"><i class="fa fa-cart-plus"></i></a>
+
+            </div>
+        </div>
+        <div class="product-price">
+            <h3>@Html.DisplayFor(modelItem => item.giaSP) đ</h3>
+            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
+        </div>
+    </div>
+</div>
+}
