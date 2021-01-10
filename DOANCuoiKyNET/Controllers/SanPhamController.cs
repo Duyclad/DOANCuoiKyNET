@@ -123,7 +123,7 @@ namespace DOANCuoiKyNET.Controllers
         public IActionResult sanphambanchay()
         {
             var products = _context.SanPhams
-                .Where(p => p.trangThai == "Đang bán")
+                .Where(p => p.trangThai == "Hiển thị")
                 //      .Where(p => p.luotMua > 100)              // Lọc các sản phẩm giá trên 100
                 .OrderByDescending(p => p.luotMua)        // Sắp xếp giảm dần, tăng dần là OrderBy
                 .Take(8);
@@ -135,7 +135,7 @@ namespace DOANCuoiKyNET.Controllers
         {
             var products = _context.SanPhams
                 //      .Where(p => p.luotMua > 100)  
-                .Where(p => p.trangThai == "Đang bán")           // Lọc các sản phẩm giá trên 100
+                .Where(p => p.trangThai == "Hiển thị")           // Lọc các sản phẩm giá trên 100
                 .OrderByDescending(p => p.idSP)        // Sắp xếp giảm dần, tăng dần là OrderBy
                 .Take(8);
           
@@ -148,7 +148,7 @@ namespace DOANCuoiKyNET.Controllers
             var products = _context.SanPhams
                 //      .Where(p => p.luotMua > 100)              // Lọc các sản phẩm giá trên 100
                 .OrderByDescending(p => p.luotXem)        // Sắp xếp giảm dần, tăng dần là OrderBy
-                .Where(p=> p.trangThai == "Đang bán")
+                .Where(p=> p.trangThai == "Hiển thị")
                 .Take(8);
             return View(products);
         }
@@ -184,7 +184,7 @@ namespace DOANCuoiKyNET.Controllers
                 NotFound();
             }
             var products = _context.SanPhams
-                .Where(p => p.idLoaiSP == id && p.trangThai=="Đang bán");
+                .Where(p => p.idLoaiSP == id && p.trangThai=="Hiển thị");
             //      .Where(p => p.luotMua > 100)              // Lọc các sản phẩm giá trên 100
             // Sắp xếp giảm dần, tăng dần là OrderBy
             ViewBag.mess = id;
