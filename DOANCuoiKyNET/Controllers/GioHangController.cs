@@ -168,6 +168,7 @@ namespace DOANCuoiKyNET.Controllers
         public  IActionResult xacnhancheckout(int mggvl, int tth, int tongcong, string ho, string ten, string diachi, string email,string sdt, string ghichu )
         {
             
+
             DateTime xx = DateTime.Now;
             DonHang dh = new DonHang();
            

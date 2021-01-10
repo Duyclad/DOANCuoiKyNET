@@ -31,6 +31,21 @@ namespace DOANCuoiKyNET.Controllers
             return View(dh);
         }
 
+        public IActionResult LichSuDonHang()
+        {
+            var dh = _context.DonHangs;
+
+
+            return View(dh);
+        }
+
+        public IActionResult LichSuDonHang(int? id)
+        {
+            var dh = _context.DonHangs.FirstOrDefault(p => p.idDH == id);
+
+
+            return View(dh);
+        }
 
 
     }
