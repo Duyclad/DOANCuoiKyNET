@@ -99,6 +99,127 @@
         });
 
 
+
+        $("#submitup1").click(function () {
+            $.ajax({
+                url: "/user/ttin/",
+                data: {
+                    ho: $("#hoacc").val().trim(),
+                    ten: $("#tenacc").val().trim(),
+                    email: $("#emailacc").val().trim(),
+                    sdt: $("#sdtacc").val().trim(),
+                    dchi: $("#addacc").val().trim(),
+                },
+                type: "POST",
+                success: function (data) {
+                    $("#kqua1").html(data);
+                    
+                }
+            });
+        });
+
+        $.ajax({
+            url: "/giohang/tongtien/",
+            data: {
+               
+            },
+            type: "POST",
+            success: function (data) {
+                $("#tth1").html(data);
+                $("#tth").attr("value", data);
+
+                $("#tongcong1").html(data);
+                $("#tongcong").attr("value", data);
+
+            }
+
+        }); 
+
+
+
+
+
+        $("#checkmgg").click(function () {
+            $.ajax({
+                url: "/giohang/checkmgg/",
+                data: {
+                    id: $("#vlmgg").val().trim(), 
+                },
+                type: "POST",
+                success: function (data) {
+                    if (data == "-1") {
+                        $("#kquamgg").html("Mã giảm giá không tồn tại");
+                    }
+                    else {
+                        $("#mmg1").html(data);
+                        $("#mmgvl").attr("value", data);
+
+                        var tong = $("#tth").val - data;
+
+
+                        $("#tongcong1").html(tong);
+                        $("#tongcong").attr("value", tong);
+                    }
+
+                }
+            });
+        });
+
+
+
+
+
+        $(".ajax-add-cart").click(function () {
+            $.ajax({
+                url: "/giohang/AddTocartAjax/",
+                data: {
+                    id: $(this).data("id"),
+                    sl: $("#slx").val().trim(),
+                    
+                },
+                type: "POST",
+                success: function () {
+                    Swal.fire({
+                      //  position: 'top-end',
+                        icon: 'success',
+                        title: 'Thêm vào giỏ hàng thành công',
+                        showConfirmButton: false,
+                        timer: 2500
+                    })
+
+                  
+
+                }
+            });
+        });
+
+
+
+
+
+        $("#submitup2").click(function () {
+            if ($("#newpw").val() != $("#repw").val()) {
+                $("#kqua2").html("Mật khẩu không trùng khớp!");
+            }
+            else {
+$.ajax({
+                url: "/user/mkhau/",
+                data: {
+                    pw: $("#pw").val().trim(),
+                    newpw: $("#newpw").val().trim(),
+             
+                },
+                type: "POST",
+                success: function (data) {
+                    $("#kqua2").html(data);
+
+                }
+            });
+            }
+            
+        });
+
+
         $("#tka").click(function () {
             window.location = "/sanpham/timkiem/" + $("#timkiemmain").val();
         });

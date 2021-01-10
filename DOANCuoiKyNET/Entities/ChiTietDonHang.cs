@@ -17,12 +17,13 @@ namespace DOANCuoiKyNET.Entities
 
         public string tenSP { get; set; }
 
-        public string thuocTinhSP { get; set; }
+ 
         
         public string hinhSP { get; set; }
 
         public int donGia { get; set; }
-        public int giamGia { get; set; }
+
+        public int thanhTien { get; set; }
 
         public int soLuong { get; set; }
 

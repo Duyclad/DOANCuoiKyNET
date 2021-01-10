@@ -4,14 +4,16 @@ using DOANCuoiKyNET.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DOANCuoiKyNET.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210110093014_202101101629")]
+    partial class _202101101629
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,6 +64,9 @@ namespace DOANCuoiKyNET.Migrations
                     b.Property<int>("donGia")
                         .HasColumnType("int");
 
+                    b.Property<int>("giamGia")
+                        .HasColumnType("int");
+
                     b.Property<string>("hinhSP")
                         .HasColumnType("nvarchar(max)");
 
@@ -74,8 +79,8 @@ namespace DOANCuoiKyNET.Migrations
                     b.Property<string>("tenSP")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("thanhTien")
-                        .HasColumnType("int");
+                    b.Property<string>("thuocTinhSP")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("idCTDH");
 

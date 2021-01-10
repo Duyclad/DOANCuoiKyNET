@@ -1,4 +1,5 @@
-﻿using DOANCuoiKyNET.Models;
+﻿using DOANCuoiKyNET.Entities;
+using DOANCuoiKyNET.Models;
 using DOANCuoiKyNET.Session;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,13 +32,25 @@ namespace DOANCuoiKyNET.Controllers
             }
             else
             {
+
                 ViewBag.houser = "TÀI";
                 ViewBag.tenuser = "KHOẢN";
                 ViewBag.accmenu1 = "Đăng nhập";
+                return RedirectToAction("index", "Home");
             }
-            return View();
+
+            var ds = _context.Users
+                .Where(p => p.idUser == ssuser.idUser);
+
+            return View(ds);
         }
 
+        private readonly MyDBContext _context;
+
+        public UserController(MyDBContext context)
+        {
+            _context = context;
+        }
 
         public sessionuser ssuser
         {
@@ -52,7 +65,56 @@ namespace DOANCuoiKyNET.Controllers
             }
         }
 
+        [HttpPost]
+        public async  Task<IActionResult> TTin(string ho, string ten, string email, string sdt, string dchi)
+        {
+            var ds = _context.Users
+                .FirstOrDefault(p => p.idUser == ssuser.idUser);
+            ds.hoUser = ho;
+            ds.tenUser = ten;
+            ds.emailUser = email;
+            ds.sdtUser = sdt;
+            ds.diaChi = dchi;
 
+            _context.Update(ds);
+            await _context.SaveChangesAsync();
+            ViewBag.mess = "Cập nhật thành công!";
+            return View();
+        }
+
+  
+        private String GetMD5(string txt)
+        {
+            String str = "";
+            Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(txt);
+            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            buffer = md5.ComputeHash(buffer);
+            foreach (Byte b in buffer)
+            {
+                str += b.ToString("X2");
+            }
+            return str;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Mkhau(string pw, string newpw)
+        {
+            var ds = _context.Users
+                .FirstOrDefault(p => p.idUser == ssuser.idUser);
+            pw = GetMD5(pw).ToLower();
+            if (ds.matKhau != pw)
+            {
+                ViewBag.mess = pw; 
+                    //"Mật khẩu không đúng!";
+                return View();
+            }
+            ds.matKhau = GetMD5(newpw).ToLower();
+
+            _context.Update(ds);
+            await _context.SaveChangesAsync();
+            ViewBag.mess = "Cập nhật thành công!";
+            return View();
+        }
 
 
     }

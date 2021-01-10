@@ -38,7 +38,7 @@ namespace DOANCuoiKyNET.Entities
 
         public int tongTienHang { get; set; }
 
-        public string maGiamGiaDH { get; set; }
+        public int maGiamGiaDH { get; set; }
         
  
 

@@ -12,13 +12,19 @@ namespace DOANCuoiKyNET.Entities
     {
         [Key]
         public int idGioHang { get; set; }
-        public int idSP { get; set; }
-        [ForeignKey("idSP")]
-        
+
+        public int idsp { get; set; }
+
+        public int tensp { get; set; }
+
+        public int giasp { get; set; }
+
         public int soLuong { get; set; }
        
         public int idUser { get; set; }
         [ForeignKey("idUser")]
         public User User { get; set; }
+
+        public int thanhTien => soLuong * giasp;
     }
 }
