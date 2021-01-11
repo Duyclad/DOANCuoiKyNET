@@ -16,6 +16,8 @@ namespace DOANCuoiKyNET.Controllers
         {
             if (ssuser != null)
             {
+               
+
                 ViewBag.houser = ssuser.hoUser;
                 ViewBag.tenuser = ssuser.tenUser;
                 ViewBag.accmenu1 = "Thông tin cá nhân";
@@ -29,6 +31,8 @@ namespace DOANCuoiKyNET.Controllers
                 {
                     ViewBag.accmenu4 = "Trang nhân viên";
                 }
+
+                return RedirectToAction("index", "Home");
             }
             else
             {

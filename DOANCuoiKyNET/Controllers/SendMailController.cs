@@ -81,7 +81,20 @@ namespace DOANCuoiKyNET.Controllers
 
         }
 
-        
+        [HttpPost]
+        [Obsolete]
+        public IActionResult Donhangthanhcong(string id, string emails)
+        {
+
+
+            var message = new Message(new string[] { emails }, "[GONZ Store] Đặt hàng thành công", "Đơn hàng của bạn đang được xử lý, bạn có thể dùng mã này để tra cứu trạng thái đơn hàng: " + id);
+            _emailsender.SendEmail(message);
+
+            return View();
+        }
+
+
+
 
     }
 

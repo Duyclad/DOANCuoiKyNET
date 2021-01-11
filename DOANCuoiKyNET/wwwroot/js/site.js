@@ -151,13 +151,14 @@
                         $("#kquamgg").html("Mã giảm giá không tồn tại");
                     }
                     else {
-                        $("#mmg1").html(data);
-                        $("#mmgvl").attr("value", data);
+                        $("#kquamgg").html("");
+                        $("#mgg1").html(data);
+                        $("#mggvl").attr("value", data);
 
-                        var tong = $("#tth").val - data;
+                        var tong = $("#tth").val()- $("#mggvl").val();
 
-
-                        $("#tongcong1").html(tong);
+                        $("#mggvlcode").attr("value", $("#vlmgg").val())
+                       $("#tongcong1").html(tong);
                         $("#tongcong").attr("value", tong);
                     }
 
@@ -165,6 +166,8 @@
             });
         });
 
+
+        
 
 
 
@@ -184,7 +187,7 @@
                         icon: 'success',
                         title: 'Thêm vào giỏ hàng thành công',
                         showConfirmButton: false,
-                        timer: 2500
+                        timer: 1500
                     })
 
                   
@@ -192,7 +195,9 @@
                 }
             });
         });
+    
 
+        
 
 
 
@@ -254,6 +259,12 @@ $.ajax({
                     $("#kquadssp").html(data);
                 }
             });
+        });
+
+
+
+        $("#tracuu").click(function () {
+            window.location = "/Donhang/tracuu/" + $("#tracuudonhang").val();
         });
 
         

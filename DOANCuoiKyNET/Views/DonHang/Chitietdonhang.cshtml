@@ -1,8 +1,10 @@
-﻿@model IEnumerable<SSGioHang>
-@{
-    Layout = "_FrontEnd";
+﻿@model IEnumerable<DOANCuoiKyNET.Entities.ChiTietDonHang>
 
+@{
+    ViewData["Title"] = "Chitietdonhang";
+    Layout = "_FrontEnd";
 }
+<h2 style="text-align:center">Chi tiết đơn hàng</h2>
 <!-- Cart Start -->
 <div class="cart-page">
     <div class="container-fluid">
@@ -17,24 +19,24 @@
                                     <th>Giá</th>
                                     <th>Số lượng</th>
                                     <th>Thành tiền</th>
-                                    <th>Xóa</th>
+                                
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
                                 @foreach (var item in Model)
                                 {
-                                
+
                                     <tr>
 
 
                                         <td>
 
                                             <div class="img">
-                                                <a href="#"><img src="~/images/sanpham/@item.hinhAnh" alt="Image"></a>
-                                                <p>@item.tensp</p>
+                                                <a href="#"><img src="~/images/sanpham/@item.hinhSP" alt="Image"></a>
+                                                <p>@item.tenSP</p>
                                             </div>
                                         </td>
-                                        <td>@item.giasp đ</td>
+                                        <td>@item.donGia đ</td>
                                         <td>
                                             <div class="qty">
                                                 <!--<button class="btn-minus"><i class="fa fa-minus"></i></button>-->
@@ -44,11 +46,10 @@
                                         </td>
                                         <td>@item.thanhTien đ</td>
 
-                                        <td><button><i class="fa fa-trash"></i></button></td>
-
+                                       
 
                                     </tr>
-                               
+
                                 }
                             </tbody>
                         </table>
@@ -58,39 +59,32 @@
             <div class="col-lg-4">
                 <div class="cart-page-inner">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="coupon">
-                                <input id="vlmgg" type="text" placeholder="Coupon Code">
-                                <button id="checkmgg">Apply Code</button>
-                            </div>
-                            <div style="color:red" id="kquamgg">
-
-                            </div>
-                        </div>
                       
 
                         <div class="col-md-12">
-                            <form asp-action="checkout" asp-controller="GioHang">
-                                <input hidden id="mggvlcode" value="0" name="mggvlcode" />
+                            
+                              
                                 <div class="cart-summary">
                                     <div class="cart-content">
-                                        <h1>Giá trị giỏ hàng</h1>
-                                        <p>Tổng tiền hàng<span id="tth1">0 đ</span></p>
-                                        <p>Giảm giá<span id="mgg1">0 đ</span></p>
-                                        <input hidden id="tth" value="0" name="tth" />
-                                        <input hidden id="mggvl" value="0" name="mggvl" />
-                                        <input hidden id="tongcong" value="0" name="tongcong" />
+                                        <h1>Thông tin đơn hàng</h1>
+                                        <p>Ngày đặt hàng<span>@ViewBag.ngaydat</span></p>
+                                        <p>Trạng thái<span>@ViewBag.trangthai</span></p>
+                                        <p>Tổng tiền hàng<span>@ViewBag.tth đ</span></p>
+                                        <p>Giảm giá<span>@ViewBag.magg </span></p>
                                         <p>Phí giao hàng<span>FREE</span></p>
-                                        <h2>Tổng cộng<span id="tongcong1">0</span></h2>
+                                        <p>Tổng cộng<span>@ViewBag.tongcong</span></p>
+                                        <h1>Thông tin người nhận</h1>
+                                        <p>Họ tên<span>@ViewBag.hodh @ViewBag.tendh</span></p>
+                                        <p>Địa chỉ: @ViewBag.diachi </p>
+                                        <p>Email<span>@ViewBag.email</span></p>
+                                        <p>SĐT<span>@ViewBag.sdt</span></p>
+                                        <p>Ghi chú: @ViewBag.ghichu</p>
                                     </div>
-                                    <div class="cart-btn">
-                                        <!--   <button>Update Cart</button>-->
-                                        <button>Checkout</button>
-                                    </div>
+                                
                                 </div>
-                            </form>
+                            
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -98,3 +92,17 @@
     </div>
 </div>
 <!-- Cart End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

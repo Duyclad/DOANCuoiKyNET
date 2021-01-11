@@ -1,97 +1,57 @@
-﻿@model DOANCuoiKyNET.Entities.DonHang
+﻿@model IEnumerable<DOANCuoiKyNET.Entities.DonHang>
 
 @{
     ViewData["Title"] = "TraCuu";
-    Layout="_FrontEnd";
+    Layout = "_FrontEnd";
 }
 
-<h1>TraCuu</h1>
 
-<div>
-    <h4>DonHang</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ngayDat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ngayDat)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ngayCapNhat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ngayCapNhat)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.hoDH)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.hoDH)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.tenDH)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.tenDH)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.diaChi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.diaChi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.eMail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.eMail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.sdtDH)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.sdtDH)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ghiChu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ghiChu)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.tongTienHang)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.tongTienHang)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.maGiamGiaDH)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.maGiamGiaDH)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.tongSoTien)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.tongSoTien)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.trangThai)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.trangThai)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.idUser)
-        </dd>
-    </dl>
+
+
+<!-- My Account Start -->
+<div class="my-account">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+
+                                <th>Ngày đặt hàng</th>
+                                <th>Tên người nhận</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                                <th>Ghi chú</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+
+                            <tr>
+                                <td>@item.idDH</td>
+                                <td>@item.ngayDat</td>
+                                <td>@item.tenDH</td>
+                                <td>@item.tongSoTien đ</td>
+                                <td>@item.trangThai</td>
+                                <td>@item.ghiChu</td>
+                                
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.idDH">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<!-- My Account End -->

@@ -25,14 +25,14 @@ namespace DOANCuoiKyNET.Controllers
         [HttpPost]
         public IActionResult LoaiTTNam()
         {
-            var ds = _context.LoaiSPs.Where(p => p.typeLoai == "0");
+            var ds = _context.LoaiSPs.Where(p => p.typeLoai == "0" && p.trangThai =="Hiển thị");
             return View(ds);
         }
 
         [HttpPost]
         public IActionResult LoaiTTNu()
         {
-            var ds = _context.LoaiSPs.Where(p => p.typeLoai == "1");
+            var ds = _context.LoaiSPs.Where(p => p.typeLoai == "1" && p.trangThai == "Hiển thị");
             return View(ds);
         }
     }

@@ -651,6 +651,29 @@ namespace DOANCuoiKyNET.Controllers
         public IActionResult QuenMatKhau()
         {
 
+            if (ssuser != null)
+            {
+                ViewBag.houser = ssuser.hoUser;
+                ViewBag.tenuser = ssuser.tenUser;
+                ViewBag.accmenu1 = "Thông tin cá nhân";
+                ViewBag.accmenu2 = "Đơn mua";
+                ViewBag.accmenu3 = "Thoát";
+                if (ssuser.vaitro == "admin")
+                {
+                    ViewBag.accmenu4 = "Trang quản trị";
+                }
+                else if (ssuser.vaitro == "staff")
+                {
+                    ViewBag.accmenu4 = "Trang nhân viên";
+                }
+                return RedirectToAction("index", "Home");
+            }
+            else
+            {
+                ViewBag.houser = "TÀI";
+                ViewBag.tenuser = "KHOẢN";
+                ViewBag.accmenu1 = "Đăng nhập";
+            }
             return View();
         }
 
@@ -689,28 +712,10 @@ namespace DOANCuoiKyNET.Controllers
 
                              };
 
-              
 
-                var dsnvs = _context.Users
-              .SingleOrDefault(ipp => ipp.vaiTro=="staffs");
 
-                var dsqtris = _context.Users
-              .SingleOrDefault(ipp => (ipp.idUser == dsAcc.idUser));
 
-                if (dsnvs != null)
-                {
-                    item.vaitro = "staffs";
-                }
-
-                else if (dsqtris != null)
-                {
-                    item.vaitro = "admin";
-                }
-                else
-                {
-                    item.vaitro = "users";
-                }
-
+                item.vaitro=dsAcc.vaiTro;
 
                 HttpContext.Session.Set("tamp", item);
 

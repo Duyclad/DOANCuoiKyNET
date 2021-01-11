@@ -12,11 +12,11 @@
                             <h2>Thông tin khách hàng</h2>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>First Name</label>
+                                    <label>Họ</label>
                                     <input class="form-control" name="ho" type="text" placeholder="First Name" value="@ViewBag.ho">
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Last Name"</label>
+                                    <label>Tên"</label>
                                     <input class="form-control" name="ten" type="text" placeholder="Last Name" value="@ViewBag.ten">
                                 </div>
                                 <div class="col-md-6">
@@ -24,11 +24,11 @@
                                     <input class="form-control" name="email" type="text" placeholder="E-mail" value="@ViewBag.email">
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Mobile No</label>
+                                    <label>Số điện thoại</label>
                                     <input class="form-control" name="sdt" type="text" placeholder="Mobile No" value="@ViewBag.sdt">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>Address</label>
+                                    <label>Địa chỉ</label>
                                     <input class="form-control" name="diachi" type="text" placeholder="Address" value="@ViewBag.diachi">
                                 </div>
                                 <div class="col-md-6">
@@ -36,11 +36,11 @@
                                     <input class="form-control" name="ghichu" type="text" placeholder="Ghi chú">
                                 </div>
                                 
+
                             </div>
                         </div>
 
-                        
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -50,6 +50,7 @@
                             <p>Giá trị hàng hóa<span>@ViewBag.tth</span></p>
                             <input hidden name="tth" value="@ViewBag.tth">
                             <input hidden name="mggvl" value="@ViewBag.mggvl">
+                            <input hidden name="mggvlcode" value="@ViewBag.mggvlcode">
                             <input hidden name="tongcong" value="@ViewBag.tongcong">
                             <p class="sub-total">Giảm giá<span>@ViewBag.mggvl</span></p>
 
@@ -65,7 +66,9 @@
                         </div>
                     </div>
                 </div>
-           
+
+            </div>
+               
         </form>
     </div>
 </div>

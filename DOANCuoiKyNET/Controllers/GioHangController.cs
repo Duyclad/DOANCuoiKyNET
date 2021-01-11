@@ -1,4 +1,5 @@
 ﻿using DOANCuoiKyNET.Entities;
+using DOANCuoiKyNET.MailMessenger;
 using DOANCuoiKyNET.Models;
 using DOANCuoiKyNET.Session;
 using Microsoft.AspNetCore.Http;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DOANCuoiKyNET.Controllers
@@ -14,6 +16,29 @@ namespace DOANCuoiKyNET.Controllers
     {
         public IActionResult Index()
         {
+
+            if (ssuser != null)
+            {
+                ViewBag.houser = ssuser.hoUser;
+                ViewBag.tenuser = ssuser.tenUser;
+                ViewBag.accmenu1 = "Thông tin cá nhân";
+                ViewBag.accmenu2 = "Đơn mua";
+                ViewBag.accmenu3 = "Thoát";
+                if (ssuser.vaitro == "admin")
+                {
+                    ViewBag.accmenu4 = "Trang quản trị";
+                }
+                else if (ssuser.vaitro == "staff")
+                {
+                    ViewBag.accmenu4 = "Trang nhân viên";
+                }
+            }
+            else
+            {
+                ViewBag.houser = "TÀI";
+                ViewBag.tenuser = "KHOẢN";
+                ViewBag.accmenu1 = "Đăng nhập";
+            }
             return View(Carts);
         }
 
@@ -114,12 +139,13 @@ namespace DOANCuoiKyNET.Controllers
             return View();
         }
 
-        [HttpPost]
+      [HttpPost]
         public IActionResult checkmgg(string id)
         {
             var mgg = _context.MaGiamGias
                 .FirstOrDefault(p => p.codeMGG == id);
-            if (mgg == null) {
+
+            if (mgg == null || mgg.soLuong<=0) {
                 ViewBag.mess = "-1";
             }
             else
@@ -129,6 +155,7 @@ namespace DOANCuoiKyNET.Controllers
             }
 
 
+        
             return View();       
         }
 
@@ -143,9 +170,32 @@ namespace DOANCuoiKyNET.Controllers
         }
 
 
-        public IActionResult checkout(int mggvl, int tth, int tongcong)
+        public IActionResult checkout(int mggvl,string mggvlcode, int tth, int tongcong)
         {
 
+            if (ssuser != null)
+            {
+                ViewBag.houser = ssuser.hoUser;
+                ViewBag.tenuser = ssuser.tenUser;
+                ViewBag.accmenu1 = "Thông tin cá nhân";
+                ViewBag.accmenu2 = "Đơn mua";
+                ViewBag.accmenu3 = "Thoát";
+                if (ssuser.vaitro == "admin")
+                {
+                    ViewBag.accmenu4 = "Trang quản trị";
+                }
+                else if (ssuser.vaitro == "staff")
+                {
+                    ViewBag.accmenu4 = "Trang nhân viên";
+                }
+            }
+            else
+            {
+                ViewBag.houser = "TÀI";
+                ViewBag.tenuser = "KHOẢN";
+                ViewBag.accmenu1 = "Đăng nhập";
+            }
+            ViewBag.mggvlcode = mggvlcode;
             ViewBag.mggvl = mggvl;
             ViewBag.tth = tth;
             ViewBag.tongcong = tongcong;
@@ -165,16 +215,64 @@ namespace DOANCuoiKyNET.Controllers
 
 
 
-        public  IActionResult xacnhancheckout(int mggvl, int tth, int tongcong, string ho, string ten, string diachi, string email,string sdt, string ghichu )
+        public IActionResult xacnhancheckout(int mggvl,string mggvlcode, int tth, int tongcong, string ho, string ten, string diachi, string email,string sdt, string ghichu )
         {
-            
 
+            if (ssuser != null)
+            {
+                ViewBag.houser = ssuser.hoUser;
+                ViewBag.tenuser = ssuser.tenUser;
+                ViewBag.accmenu1 = "Thông tin cá nhân";
+                ViewBag.accmenu2 = "Đơn mua";
+                ViewBag.accmenu3 = "Thoát";
+                if (ssuser.vaitro == "admin")
+                {
+                    ViewBag.accmenu4 = "Trang quản trị";
+                }
+                else if (ssuser.vaitro == "staff")
+                {
+                    ViewBag.accmenu4 = "Trang nhân viên";
+                }
+            }
+            else
+            {
+                ViewBag.houser = "TÀI";
+                ViewBag.tenuser = "KHOẢN";
+                ViewBag.accmenu1 = "Đăng nhập";
+            }
+
+            if (sdt == null ||email==null)
+            {
+                return RedirectToAction("index", "home");
+            }
+            var mggcode = _context.MaGiamGias.FirstOrDefault(p => p.codeMGG == mggvlcode);
+
+            if (mggcode != null)
+            {
+                mggcode.soLuong--;
+                _context.Update(mggcode);
+                _context.SaveChanges();
+            }
+
+
+
+            var db  = _context.DonHangs
+                //      .Where(p => p.luotMua > 100)              // Lọc các sản phẩm giá trên 100
+                .OrderByDescending(p => p.idDH)        // Sắp xếp giảm dần, tăng dần là OrderBy
+                .Take(1); ;
+
+
+            
             DateTime xx = DateTime.Now;
+
             DonHang dh = new DonHang();
-           
+          if (ssuser != null)
+            {
+                dh.idUser = ssuser.idUser;
+            }
             dh.trangThai = "Đang xử lý";
-            dh.ngayCapNhat = DateTime.Now;
-            dh.ngayDat = DateTime.Now;
+            dh.ngayCapNhat = xx;
+            dh.ngayDat = xx;
             dh.hoDH = ho;
             dh.tenDH = ten;
             dh.sdtDH = sdt;
@@ -185,45 +283,105 @@ namespace DOANCuoiKyNET.Controllers
             dh.tongSoTien = tongcong;
             dh.maGiamGiaDH = mggvl;
 
-            _context.Add(dh);
-            _context.SaveChangesAsync();
-
-
-
-
+            int x = insert(dh);
 
             
 
            
-     
-  //  var dhx = _context.DonHangs.FirstOrDefault(p => p.ngayDat == xx && p.hoDH == ho && p.tenDH == ten && p.sdtDH == sdt && p.eMail == email && p.diaChi == diachi);
 
             foreach (var item in Carts)
             {
                 ChiTietDonHang xxx = new ChiTietDonHang();
 
-                xxx.idDH = dh.idDH;
+                xxx.idDH = x;
                 xxx.tenSP = item.tensp;
                 xxx.hinhSP = item.hinhAnh;
                 xxx.donGia = item.giasp;
                 xxx.soLuong = item.soLuong;
                 xxx.thanhTien = item.thanhTien;
-                _context.Add(xxx);
-                _context.SaveChangesAsync();
+                
 
+                _context.Add(xxx);
+                _context.SaveChanges();
+
+                var ct = _context.SanPhams
+                    .FirstOrDefault(p => p.idSP == item.idSP);
+                ct.luotMua++;
+
+                _context.Update(ct);
+                _context.SaveChanges();
             }
 
-          
-            Carts.Clear();
 
-            HttpContext.Session.Set("GioHang", Carts);
 
-            return RedirectToAction("index","giohang");
+
+            var ss = new List<SSGioHang>();
+
+                HttpContext.Session.Set("GioHang", ss);
+            if (ssuser == null)
+            {
+ViewBag.mess = "Đặt hàng thành công! Bạn có thể dùng mã này để tra cứu trạng thái đơn hàng: " + x;
+            }
+            else
+            {
+                ViewBag.mess = "Đặt hàng thành công!";
+            }
+
+            ViewBag.iddh = x;
+            ViewBag.emails = email;
+
+            /*
+                        ViewBag.mess=x;
+                        return View();*/
+            return View();
+        }
+
+     
+
+
+            public int insert(DonHang dh)
+        {
+            _context.Add(dh);
+            _context.SaveChanges();
+            return dh.idDH;
+        }
+
+
+        public IActionResult hoanthanh(int xx)
+        {
+
+
+
+            //var db = _context.DonHangs.FirstOrDefault(p => p.ngayDat == xx);
+
+            /*  foreach (var item in Carts)
+              {
+                  ChiTietDonHang xxx = new ChiTietDonHang();
+
+                  xxx.idDH = xx;
+                  xxx.tenSP = item.tensp;
+                  xxx.hinhSP = item.hinhAnh;
+                  xxx.donGia = item.giasp;
+                  xxx.soLuong = item.soLuong;
+                  xxx.thanhTien = item.thanhTien;
+                  _context.Add(xxx);
+                  await _context.SaveChangesAsync();
+
+              }
+
+
+              Carts.Clear();
+
+              HttpContext.Session.Set("GioHang", Carts);*/
+            ViewBag.mess = xx;
+
+            return View();
+          //  return RedirectToAction("index", "giohang");
         }
 
 
 
-        
+       
 
 
 

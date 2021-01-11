@@ -52,7 +52,7 @@ namespace DOANCuoiKyNET.Controllers
         }
 
         [HttpPost]
-        public async  Task<IActionResult> IndexAdd(string hoten, string email, string tieude, string noidung)
+        public  IActionResult IndexAdd(string hoten, string email, string tieude, string noidung)
 
         {
 
@@ -67,7 +67,7 @@ namespace DOANCuoiKyNET.Controllers
             lh.noiDung = noidung;
 
             _context.Add(lh);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return View();
         }
 

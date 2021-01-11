@@ -63,9 +63,21 @@ namespace DOANCuoiKyNET.Controllers
                 ViewBag.tenuser = "KHOẢN";
                 ViewBag.accmenu1 = "Đăng nhập";
             }
+
+
+
+            var ctx = _context.SanPhams
+               .Where(p => p.idSP == id);
+
             var ct = _context.SanPhams
-                .Where(p => p.idSP == id);
-            return View(ct);
+                .FirstOrDefault(p => p.idSP == id);
+
+            ct.luotXem++;
+
+            _context.Update(ct);
+            _context.SaveChanges();
+
+            return View(ctx);
         }
 
 
@@ -208,27 +220,27 @@ namespace DOANCuoiKyNET.Controllers
                     if (dssp3 == "0")
                     {
                          var product = _context.SanPhams
-                          .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword));
+                          .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword));
                            return PartialView(product);
                     }
                     else if (dssp3 == "1")
                     {
                         var product = _context.SanPhams
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP>=50000 && p.giaSP<=100000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP>=50000 && p.giaSP<=100000);
                         return PartialView(product);
                     }
 
                     else if (dssp3 == "2")
                     {
                         var product = _context.SanPhams
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 101000 && p.giaSP <= 300000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 101000 && p.giaSP <= 300000);
                         return PartialView(product);
                     }
 
                     else if (dssp3 == "3")
                     {
                         var product = _context.SanPhams
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 301000 && p.giaSP <= 500000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 301000 && p.giaSP <= 500000);
                         return PartialView(product);
                     }
 
@@ -239,14 +251,14 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.idSP)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword));
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword));
                         return PartialView(product);
                     }
                     else if (dssp3 == "1")
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.idSP)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 50000 && p.giaSP <= 100000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 50000 && p.giaSP <= 100000);
                         return PartialView(product);
                     }
 
@@ -255,7 +267,7 @@ namespace DOANCuoiKyNET.Controllers
 
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.idSP)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 101000 && p.giaSP <= 300000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 101000 && p.giaSP <= 300000);
                         return PartialView(product);
                     }
 
@@ -263,7 +275,7 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.idSP)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 301000 && p.giaSP <= 500000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 301000 && p.giaSP <= 500000);
                         return PartialView(product);
                     }
 
@@ -276,14 +288,14 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotMua)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword));
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword));
                         return PartialView(product);
                     }
                     else if (dssp3 == "1")
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotMua)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 50000 && p.giaSP <= 100000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 50000 && p.giaSP <= 100000);
                         return PartialView(product);
                     }
 
@@ -292,7 +304,7 @@ namespace DOANCuoiKyNET.Controllers
 
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotMua)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 101000 && p.giaSP <= 300000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 101000 && p.giaSP <= 300000);
                         return PartialView(product);
                     }
 
@@ -300,7 +312,7 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotMua)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 301000 && p.giaSP <= 500000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 301000 && p.giaSP <= 500000);
                         return PartialView(product);
                     }
 
@@ -313,14 +325,14 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotXem)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword));
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword));
                         return PartialView(product);
                     }
                     else if (dssp3 == "1")
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotXem)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 50000 && p.giaSP <= 100000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 50000 && p.giaSP <= 100000);
                         return PartialView(product);
                     }
 
@@ -329,7 +341,7 @@ namespace DOANCuoiKyNET.Controllers
 
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotXem)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 101000 && p.giaSP <= 300000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 101000 && p.giaSP <= 300000);
                         return PartialView(product);
                     }
 
@@ -337,7 +349,7 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotXem)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.tenSP.Contains(keyword) && p.giaSP >= 301000 && p.giaSP <= 500000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.tenSP.Contains(keyword) && p.giaSP >= 301000 && p.giaSP <= 500000);
                         return PartialView(product);
                     }
 
@@ -357,27 +369,27 @@ namespace DOANCuoiKyNET.Controllers
                     if (dssp3 == "0")
                     {
                         var product = _context.SanPhams
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán");
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị");
                         return PartialView(product);
                     }
                     else if (dssp3 == "1")
                     {
                         var product = _context.SanPhams
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" &&  p.giaSP >= 50000 && p.giaSP <= 100000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" &&  p.giaSP >= 50000 && p.giaSP <= 100000);
                         return PartialView(product);
                     }
 
                     else if (dssp3 == "2")
                     {
                         var product = _context.SanPhams
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.giaSP >= 101000 && p.giaSP <= 300000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.giaSP >= 101000 && p.giaSP <= 300000);
                         return PartialView(product);
                     }
 
                     else if (dssp3 == "3")
                     {
                         var product = _context.SanPhams
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" &&  p.giaSP >= 301000 && p.giaSP <= 500000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" &&  p.giaSP >= 301000 && p.giaSP <= 500000);
                         return PartialView(product);
                     }
 
@@ -388,14 +400,14 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.idSP)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" );
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" );
                         return PartialView(product);
                     }
                     else if (dssp3 == "1")
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.idSP)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán"  && p.giaSP >= 50000 && p.giaSP <= 100000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị"  && p.giaSP >= 50000 && p.giaSP <= 100000);
                         return PartialView(product);
                     }
 
@@ -404,7 +416,7 @@ namespace DOANCuoiKyNET.Controllers
 
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.idSP)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán"  && p.giaSP >= 101000 && p.giaSP <= 300000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị"  && p.giaSP >= 101000 && p.giaSP <= 300000);
                         return PartialView(product);
                     }
 
@@ -412,7 +424,7 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.idSP)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" && p.giaSP >= 301000 && p.giaSP <= 500000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" && p.giaSP >= 301000 && p.giaSP <= 500000);
                         return PartialView(product);
                     }
 
@@ -425,14 +437,14 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotMua)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán");
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị");
                         return PartialView(product);
                     }
                     else if (dssp3 == "1")
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotMua)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán"  && p.giaSP >= 50000 && p.giaSP <= 100000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị"  && p.giaSP >= 50000 && p.giaSP <= 100000);
                         return PartialView(product);
                     }
 
@@ -441,7 +453,7 @@ namespace DOANCuoiKyNET.Controllers
 
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotMua)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán"  && p.giaSP >= 101000 && p.giaSP <= 300000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị"  && p.giaSP >= 101000 && p.giaSP <= 300000);
                         return PartialView(product);
                     }
 
@@ -449,7 +461,7 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotMua)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán"  && p.giaSP >= 301000 && p.giaSP <= 500000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị"  && p.giaSP >= 301000 && p.giaSP <= 500000);
                         return PartialView(product);
                     }
 
@@ -462,14 +474,14 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotXem)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán" );
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị" );
                         return PartialView(product);
                     }
                     else if (dssp3 == "1")
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotXem)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán"  && p.giaSP >= 50000 && p.giaSP <= 100000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị"  && p.giaSP >= 50000 && p.giaSP <= 100000);
                         return PartialView(product);
                     }
 
@@ -478,7 +490,7 @@ namespace DOANCuoiKyNET.Controllers
 
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotXem)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán"  && p.giaSP >= 101000 && p.giaSP <= 300000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị"  && p.giaSP >= 101000 && p.giaSP <= 300000);
                         return PartialView(product);
                     }
 
@@ -486,7 +498,7 @@ namespace DOANCuoiKyNET.Controllers
                     {
                         var product = _context.SanPhams
                              .OrderByDescending(p => p.luotXem)
-                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Đang bán"  && p.giaSP >= 301000 && p.giaSP <= 500000);
+                         .Where(p => p.idLoaiSP == idloaix && p.trangThai == "Hiển thị"  && p.giaSP >= 301000 && p.giaSP <= 500000);
                         return PartialView(product);
                     }
 
@@ -498,7 +510,7 @@ namespace DOANCuoiKyNET.Controllers
             }
 
             var products = _context.SanPhams
-               .Where(p => p.idLoaiSP == idloaix || p.trangThai == "Đang bán");
+               .Where(p => p.idLoaiSP == idloaix || p.trangThai == "Hiển thị");
 
 
 
