@@ -172,10 +172,12 @@ namespace DOANCuoiKyNET.Controllers
 
         public IActionResult checkout(int mggvl,string mggvlcode, int tth, int tongcong)
         {
-            if (Carts == null)
+
+            if (Carts.Count==0)
             {
                 RedirectToAction("index", "giohang");
             }
+        
             if (ssuser != null)
             {
                 ViewBag.houser = ssuser.hoUser;
