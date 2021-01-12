@@ -58,20 +58,17 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">@ViewBag.tenadmin</span>
                         <img class="img-profile rounded-circle"
                              src="~/startbootstrap-sb-admin-2-gh-pages/img/undraw_profile.svg">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                          aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Profile
-                        </a>
+
 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <a class="dropdown-item" id="outad" href="#" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
                         </a>
@@ -81,10 +78,24 @@
             </ul>
 
         </nav>
+        <script>
+            $(document).ready(function () {
+                $("#outad").click(function () {
+                    $.ajax({
+                        url: "/Login/Logout",
+                        type: "POST",
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                });
+            });
+
+        </script>
         <!-- End of Topbar -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <h1>Index</h1>
+            <h1>Thương Hiệu</h1>
 
             <p>
                 <a asp-action="Create">Create New</a>
@@ -104,7 +115,7 @@
                         <th>
                             Email
                         </th>
-                    
+
                         <th>
                             Ngày tạo
                         </th>
@@ -134,7 +145,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.emailThuongHieu)
                             </td>
-                     
+
                             <td>
                                 @Html.DisplayFor(modelItem => item.ngayTao)
                             </td>

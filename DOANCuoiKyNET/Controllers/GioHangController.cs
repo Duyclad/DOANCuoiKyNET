@@ -145,7 +145,7 @@ namespace DOANCuoiKyNET.Controllers
             var mgg = _context.MaGiamGias
                 .FirstOrDefault(p => p.codeMGG == id);
 
-            if (mgg == null || mgg.soLuong<=0) {
+            if (mgg == null || mgg.soLuong<=0 || mgg.trangThai=="Ẩn") {
                 ViewBag.mess = "-1";
             }
             else
@@ -172,7 +172,10 @@ namespace DOANCuoiKyNET.Controllers
 
         public IActionResult checkout(int mggvl,string mggvlcode, int tth, int tongcong)
         {
-
+            if (Carts == null)
+            {
+                RedirectToAction("index", "giohang");
+            }
             if (ssuser != null)
             {
                 ViewBag.houser = ssuser.hoUser;
@@ -307,6 +310,7 @@ namespace DOANCuoiKyNET.Controllers
                 var ct = _context.SanPhams
                     .FirstOrDefault(p => p.idSP == item.idSP);
                 ct.luotMua++;
+                ct.soLuongKho--;
 
                 _context.Update(ct);
                 _context.SaveChanges();
@@ -381,8 +385,17 @@ ViewBag.mess = "Đặt hàng thành công! Bạn có thể dùng mã này để 
 
 
 
-       
 
+        public IActionResult xoasp(int? id)
+        {
+            var data = Carts;
+
+            var item = data.SingleOrDefault(p => p.idSP == id);
+            data.Remove(item);
+            HttpContext.Session.Set("GioHang", data);
+
+            return RedirectToAction("index", "giohang");
+        }
 
 
 

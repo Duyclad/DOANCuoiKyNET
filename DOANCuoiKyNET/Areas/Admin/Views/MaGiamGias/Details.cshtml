@@ -2,59 +2,61 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "_BackEndAdmin";
 }
+<div id="content-wrapper" class="d-flex flex-column" style="padding:20px">
+    <h1>Thông tin</h1>
 
-<h1>Details</h1>
+    <div>
 
-<div>
-    <h4>MaGiamGia</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.codeMGG)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.codeMGG)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.tenMGG)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.tenMGG)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.giaTri)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.giaTri)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.soLuong)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.soLuong)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.trangThai)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.trangThai)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ngayTao)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ngayTao)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ngayCapNhat)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ngayCapNhat)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.codeMGG">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Code
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.codeMGG)
+            </dd>
+            <dt class="col-sm-2">
+                Tên mã giảm giá
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.tenMGG)
+            </dd>
+            <dt class="col-sm-2">
+                Giá trị
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.giaTri)
+            </dd>
+            <dt class="col-sm-2">
+                Số lượng
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.soLuong)
+            </dd>
+            <dt class="col-sm-2">
+                Trạng thái
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.trangThai)
+            </dd>
+            <dt class="col-sm-2">
+                Ngày tạo
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ngayTao)
+            </dd>
+            <dt class="col-sm-2">
+                Ngày cập nhật
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ngayCapNhat)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.codeMGG">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+    </div>

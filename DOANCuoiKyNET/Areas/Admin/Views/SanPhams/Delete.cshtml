@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<DOANCuoiKyNET.Areas.Admin.Models.Sanpham_Loai>
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
     Layout = "_BackEndAdmin";
 }
-<div id="content-wrapper" class="d-flex flex-column" style="padding:20px">
-    @foreach (var item in Model)
-    {
-        <h1>Thông tin</h1>
-
+@foreach (var item in Model)
+{
+    <div id="content-wrapper" class="d-flex flex-column" style="padding:20px">
+        <h3>Bạn có chắc muốn xóa?</h3>
         <div>
 
             <hr />
@@ -81,11 +80,13 @@
                     @Html.DisplayFor(modelItem => item.ngayCapNhat)
                 </dd>
 
+
             </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="@item.idSP" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-action="Index">Back to List</a>
+            </form>
         </div>
-        <div>
-            <a asp-action="Edit" asp-route-id="@item.idSP">Edit</a> |
-            <a asp-action="Index">Back to List</a>
-        </div>
-    }
-    </div>
+    </div>  }

@@ -7,7 +7,7 @@
 {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.hinhAnh)
+                <img src="~/images/banner/@Html.DisplayFor(modelItem => item.hinhAnh)" style="width:300px;height:100px" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ngayTao)
@@ -18,9 +18,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ngayKetThuc)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.url)
-            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.idBanner">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.idBanner">Details</a> |

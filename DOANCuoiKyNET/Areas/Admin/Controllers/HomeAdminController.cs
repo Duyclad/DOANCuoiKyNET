@@ -1,4 +1,6 @@
 ﻿using DOANCuoiKyNET.Models;
+using DOANCuoiKyNET.Session;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,14 +15,39 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
     public class HomeAdminController : Controller
 
     {
-        
+        public sessionuser ssuser
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<sessionuser>("ssuser");
+                /* if (data == null)
+                  {
+                      data = new sessionuser();
+                  }*/
+                return data;
+            }
+        }
 
 
         public IActionResult Index()
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            ViewBag.tenadmin = ssuser.hoUser + " " + ssuser.tenUser;
             return View();
         }
         
+        public IActionResult outadmin()
+        {
+            return View();
+        }
 
        
     }

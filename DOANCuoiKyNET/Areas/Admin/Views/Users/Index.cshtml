@@ -59,20 +59,16 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">@ViewBag.tenadmin</span>
                         <img class="img-profile rounded-circle"
                              src="~/startbootstrap-sb-admin-2-gh-pages/img/undraw_profile.svg">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                          aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Profile
-                        </a>
 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <a id="outad" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
                         </a>
@@ -82,6 +78,21 @@
             </ul>
 
         </nav>
+        <script>
+            $(document).ready(function () {
+                $("#outad").click(function () {
+                    $.ajax({
+                        url: "/Login/Logout",
+                        type: "POST",
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                });
+            });
+
+        </script>
+
         <!-- End of Topbar -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -135,48 +146,48 @@
                 <tbody id="kqua">
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            <img src="~/images/user/@Html.DisplayFor(modelItem => item.hinhAVT)" style="width:80px;height:80px " alt="@Html.DisplayFor(modelItem => item.hinhAVT)" />
+                        <tr>
+                            <td>
+                                <img src="~/images/user/@Html.DisplayFor(modelItem => item.hinhAVT)" style="width:80px;height:80px " alt="@Html.DisplayFor(modelItem => item.hinhAVT)" />
 
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.hoUser)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tenUser)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.sdtUser)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.emailUser)
-                        </td>
-
-
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hoUser)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tenUser)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sdtUser)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.emailUser)
+                            </td>
 
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ngayTao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ngayCapNhat)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.hoatDongLanCuoi)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.trangThai)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.vaiTro)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.idUser">Sửa</a> |
-                            <a asp-action="Details" asp-route-id="@item.idUser">Xem</a> |
-                            <a asp-action="Delete" asp-route-id="@item.idUser">Xóa</a>
-                        </td>
-                    </tr>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ngayTao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ngayCapNhat)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hoatDongLanCuoi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.trangThai)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.vaiTro)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.idUser">Sửa</a> |
+                                <a asp-action="Details" asp-route-id="@item.idUser">Xem</a> |
+                                <a asp-action="Delete" asp-route-id="@item.idUser">Xóa</a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>

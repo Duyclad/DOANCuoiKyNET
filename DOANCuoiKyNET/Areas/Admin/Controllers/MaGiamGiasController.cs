@@ -24,7 +24,17 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.MaGiamGias);
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            ViewBag.tenadmin = ssuser.hoUser + " " + ssuser.tenUser;
+            return View(_context.MaGiamGias.OrderByDescending(p=>p.ngayTao));
         }
 
         [HttpPost]
@@ -63,6 +73,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         // GET: Loais/Create
         public IActionResult Create()
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             return View();
         }
 
@@ -104,14 +123,23 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
 
 
         // GET: Loais/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
             }
 
-            var loaispx = await _context.LienHes.FindAsync(id);
+            var loaispx = await _context.MaGiamGias.FindAsync(id);
        
 
             if (loaispx == null)
@@ -134,7 +162,7 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
             var xx = _context.MaGiamGias
                 .FirstOrDefault(p => p.codeMGG == id);
 
-
+            xx.trangThai = user.trangThai;
 
             xx.codeMGG = user.codeMGG;
             xx.tenMGG = user.tenMGG;
@@ -159,6 +187,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         // GET: Loais/Delete/5
         public IActionResult Delete(string id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -195,6 +232,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
 
         public IActionResult Details(string id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();

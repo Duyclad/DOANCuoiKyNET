@@ -16,6 +16,7 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
     [Area("Admin")]
     public class BannersController : Controller
     {
+
         private readonly MyDBContext _context;
 
         public BannersController(MyDBContext context)
@@ -25,6 +26,16 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            ViewBag.tenadmin = ssuser.hoUser +" " +ssuser.tenUser;
             return View(_context.Banners);
         }
 
@@ -63,6 +74,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         // GET: Loais/Create
         public IActionResult Create()
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             return View();
         }
 
@@ -126,6 +146,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         // GET: Loais/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -230,6 +259,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         // GET: Loais/Delete/5
         public IActionResult Delete(int? id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -266,6 +304,10 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
 
         public IActionResult Details(int? id)
         {
+            if (ssuser.vaitro != "admin" || ssuser==null)
+            {
+                return RedirectToAction("index", "login");
+            }
             if (id == null)
             {
                 return NotFound();

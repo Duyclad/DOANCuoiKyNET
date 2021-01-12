@@ -1,9 +1,10 @@
-﻿@model IEnumerable<DOANCuoiKyNET.Entities.MaGiamGia>
+﻿@model IEnumerable<DOANCuoiKyNET.Entities.DonHang>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "_BackEndAdmin";
 }
+
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -22,7 +23,7 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input type="text" id="keyword" class="form-control bg-light border-0 small" placeholder="Tìm mã giảm giá"
+                    <input type="text" id="keyword" class="form-control bg-light border-0 small" placeholder="Tìm đơn hàng"
                            aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
@@ -35,7 +36,16 @@
             <script>
                 $(document).ready(function () {
                     $("#keyword").keyup(function () {
-
+                        $.ajax({
+                            url: "/Admin/Donhangs/TimAjax/",
+                            data: {
+                                keyword: $("#keyword").val().trim(),
+                            },
+                            type: "POST",
+                            success: function (data) {
+                                $("#kqua").html(data);
+                            }
+                        });
                     });
                 });
             </script>
@@ -86,67 +96,65 @@
         <!-- End of Topbar -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <h1>Mã giảm giá</h1>
+            <h1>Đơn hàng</h1>
 
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
             <table class="table">
                 <thead>
                     <tr>
                         <th>
-                            Code
+                            ID
+                        </th>
+
+                        <th>
+                            Ngày đặt
+                        </th>
+
+                        <th>
+                            Email
                         </th>
                         <th>
-                            Tên mã giảm giá
+                            SĐT
                         </th>
                         <th>
-                            Số tiền giảm
-                        </th>
-                        <th>
-                            Số lượng
+                            Tổng tiền
                         </th>
                         <th>
                             Trạng thái
                         </th>
-                        <th>
-                            Ngày tạo
-                        </th>
-                        <th>
-                            Ngày cập nhật
-                        </th>
+
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="kqua">
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.codeMGG)
+                                @Html.DisplayFor(modelItem => item.idDH)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.tenMGG)
+                                @Html.DisplayFor(modelItem => item.ngayDat)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.eMail)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.giaTri)
+                                @Html.DisplayFor(modelItem => item.sdtDH)
                             </td>
+
+
                             <td>
-                                @Html.DisplayFor(modelItem => item.soLuong)
+                                @Html.DisplayFor(modelItem => item.tongSoTien)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.trangThai)
                             </td>
+
                             <td>
-                                @Html.DisplayFor(modelItem => item.ngayTao)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ngayCapNhat)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.codeMGG">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.codeMGG">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.codeMGG">Delete</a>
+                                <a asp-action="Edit" asp-route-id="@item.idDH">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.idDH">Details</a> |
+
                             </td>
                         </tr>
                     }

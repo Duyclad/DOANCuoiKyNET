@@ -106,7 +106,7 @@ namespace DOANCuoiKyNET.Controllers
                 ViewBag.accmenu1 = "Đăng nhập";
             }
             var ct = _context.SanPhams
-                .Where(p => p.tenSP.Contains(id));
+                .Where(p => p.tenSP.Contains(id) && p.soLuongKho>0 && p.trangThai=="Hiển thị");
             return View(ct);
         }
 
@@ -135,7 +135,7 @@ namespace DOANCuoiKyNET.Controllers
         public IActionResult sanphambanchay()
         {
             var products = _context.SanPhams
-                .Where(p => p.trangThai == "Hiển thị")
+                .Where(p => p.trangThai == "Hiển thị" && p.soLuongKho>0)
                 //      .Where(p => p.luotMua > 100)              // Lọc các sản phẩm giá trên 100
                 .OrderByDescending(p => p.luotMua)        // Sắp xếp giảm dần, tăng dần là OrderBy
                 .Take(8);
@@ -147,7 +147,7 @@ namespace DOANCuoiKyNET.Controllers
         {
             var products = _context.SanPhams
                 //      .Where(p => p.luotMua > 100)  
-                .Where(p => p.trangThai == "Hiển thị")           // Lọc các sản phẩm giá trên 100
+                .Where(p => p.trangThai == "Hiển thị" && p.soLuongKho>0)           // Lọc các sản phẩm giá trên 100
                 .OrderByDescending(p => p.idSP)        // Sắp xếp giảm dần, tăng dần là OrderBy
                 .Take(8);
           
@@ -160,7 +160,7 @@ namespace DOANCuoiKyNET.Controllers
             var products = _context.SanPhams
                 //      .Where(p => p.luotMua > 100)              // Lọc các sản phẩm giá trên 100
                 .OrderByDescending(p => p.luotXem)        // Sắp xếp giảm dần, tăng dần là OrderBy
-                .Where(p=> p.trangThai == "Hiển thị")
+                .Where(p=> p.trangThai == "Hiển thị" && p.soLuongKho>0)
                 .Take(8);
             return View(products);
         }
@@ -196,7 +196,7 @@ namespace DOANCuoiKyNET.Controllers
                 NotFound();
             }
             var products = _context.SanPhams
-                .Where(p => p.idLoaiSP == id && p.trangThai=="Hiển thị");
+                .Where(p => p.idLoaiSP == id && p.trangThai=="Hiển thị" && p.soLuongKho>0);
             //      .Where(p => p.luotMua > 100)              // Lọc các sản phẩm giá trên 100
             // Sắp xếp giảm dần, tăng dần là OrderBy
             ViewBag.mess = id;

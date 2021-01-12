@@ -33,6 +33,16 @@ namespace DOANCuoiKyNET.Controllers
         //GET Loais
         public IActionResult Index()
         {
+            if ( ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            ViewBag.tenadmin = ssuser.hoUser + " " + ssuser.tenUser;
             var loaisp
                 = from p in _context.LoaiSPs
                   join c in _context.Users on p.idUser equals c.idUser
@@ -59,6 +69,15 @@ namespace DOANCuoiKyNET.Controllers
 
         public IActionResult Details(int? id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -103,6 +122,15 @@ namespace DOANCuoiKyNET.Controllers
         // GET: Loais/Create
         public IActionResult Create()
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             return View();
         }
 
@@ -166,6 +194,15 @@ namespace DOANCuoiKyNET.Controllers
         // GET: Loais/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -293,6 +330,15 @@ namespace DOANCuoiKyNET.Controllers
         // GET: Loais/Delete/5
         public IActionResult Delete(int? id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();

@@ -16,6 +16,14 @@
         });
 
         $.ajax({
+            url: "/user/hoatdong/",
+            type: "POST",
+           
+
+
+        });
+
+        $.ajax({
             url: "/sanpham/sanphamnoibat/",
             type: "POST",
             success: function (data) {
@@ -125,10 +133,10 @@
             },
             type: "POST",
             success: function (data) {
-                $("#tth1").html(data);
+                $("#tth1").html(data+" đ");
                 $("#tth").attr("value", data);
 
-                $("#tongcong1").html(data);
+                $("#tongcong1").html(data+ " đ");
                 $("#tongcong").attr("value", data);
 
             }
@@ -152,13 +160,15 @@
                     }
                     else {
                         $("#kquamgg").html("");
-                        $("#mgg1").html(data);
+                        $("#mgg1").html(data + " đ");
                         $("#mggvl").attr("value", data);
 
                         var tong = $("#tth").val()- $("#mggvl").val();
-
+                        if (tong < 0) {
+                            tong = 0;
+                        }
                         $("#mggvlcode").attr("value", $("#vlmgg").val())
-                       $("#tongcong1").html(tong);
+                       $("#tongcong1").html(tong+ " đ");
                         $("#tongcong").attr("value", tong);
                     }
 

@@ -31,9 +31,20 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            ViewBag.tenadmin = ssuser.hoUser + " " + ssuser.tenUser;
             var loaisp
                 = from p in _context.LoaiSPs
                   join c in _context.SanPhams on p.idLoaiSP equals c.idLoaiSP
+                  orderby c.idSP descending 
                   // where p.ProductId == 2
                   select new Sanpham_Loai
                   {
@@ -62,6 +73,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
 
         public IActionResult Details(int? id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -108,8 +128,16 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         // GET: Loais/Create
         public IActionResult Create()
         {
-            
-            
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+
             return View();
         }
 
@@ -180,6 +208,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit(int? id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -291,6 +328,15 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
         // GET: Loais/Delete/5
         public IActionResult Delete(int? id)
         {
+            if (ssuser == null)
+            {
+
+                return RedirectToAction("outadmin", "homeadmin");
+            }
+            else if (ssuser.vaitro != "admin")
+            {
+                return RedirectToAction("outadmin", "homeadmin");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -301,6 +347,7 @@ namespace DOANCuoiKyNET.Areas.Admin.Controllers
             var loaispx
                = from p in _context.LoaiSPs
                  join c in _context.SanPhams on p.idLoaiSP equals c.idLoaiSP
+                 where c.idSP == id
                  // where p.ProductId == 2
                  select new Sanpham_Loai
                  {

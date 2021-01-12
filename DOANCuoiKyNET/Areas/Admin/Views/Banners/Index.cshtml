@@ -59,20 +59,17 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">@ViewBag.tenadmin</span>
                         <img class="img-profile rounded-circle"
                              src="~/startbootstrap-sb-admin-2-gh-pages/img/undraw_profile.svg">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                          aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Profile
-                        </a>
+
 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <a id="outad" class="dropdown-item" >
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
                         </a>
@@ -82,11 +79,25 @@
             </ul>
 
         </nav>
+        <script>
+            $(document).ready(function () {
+                $("#outad").click(function () {
+                    $.ajax({
+                        url: "/Login/Logout",
+                        type: "POST",
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                });
+            });
+
+        </script>
         <!-- End of Topbar -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <h1>Index</h1>
+            <h1>Banner</h1>
 
             <p>
                 <a asp-action="Create">Create New</a>
@@ -95,20 +106,18 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.hinhAnh)
+                            Hình ảnh
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.ngayTao)
+                            Ngày tạo
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.ngayBatDau)
+                            Ngày bắt đầu
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.ngayKetThuc)
+                            Ngày kết thúc
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.url)
-                        </th>
+
                         <th></th>
                     </tr>
                 </thead>
@@ -117,7 +126,8 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.hinhAnh)
+                                <img src="~/images/banner/@Html.DisplayFor(modelItem => item.hinhAnh)" style="width:300px;height:100px" />
+
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ngayTao)
@@ -128,9 +138,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.ngayKetThuc)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.url)
-                            </td>
+
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.idBanner">Edit</a> |
                                 <a asp-action="Details" asp-route-id="@item.idBanner">Details</a> |
@@ -140,6 +148,6 @@
                     }
                 </tbody>
             </table>
-</div>
-</div>
+        </div>
+    </div>
 </div>

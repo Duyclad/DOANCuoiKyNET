@@ -2,47 +2,45 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "_BackEndAdmin";
 }
+<div id="content-wrapper" class="d-flex flex-column" style="padding:20px">
+    <h1>Thông tin</h1>
 
-<h1>Details</h1>
+    <div>
+        <h4>Banner</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Hình ảnh
+            </dt>
+            <dd class="col-sm-10">
+                <img src="~/images/banner/@Html.DisplayFor(model => model.hinhAnh)" />
 
-<div>
-    <h4>Banner</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.hinhAnh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.hinhAnh)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ngayTao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ngayTao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ngayBatDau)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ngayBatDau)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ngayKetThuc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ngayKetThuc)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.url)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.url)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.idBanner">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+            </dd>
+            <dt class="col-sm-2">
+                Ngày tạo
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ngayTao)
+            </dd>
+            <dt class="col-sm-2">
+                Ngày bắt đầu
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ngayBatDau)
+            </dd>
+            <dt class="col-sm-2">
+                Ngày kết thúc
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ngayKetThuc)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.idBanner">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+    </div>

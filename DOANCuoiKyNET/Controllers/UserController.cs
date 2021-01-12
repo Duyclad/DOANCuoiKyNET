@@ -36,7 +36,7 @@ namespace DOANCuoiKyNET.Controllers
                 ViewBag.houser = "TÀI";
                 ViewBag.tenuser = "KHOẢN";
                 ViewBag.accmenu1 = "Đăng nhập";
-                return RedirectToAction("index", "Home");
+                return RedirectToAction("index", "login");
             }
 
             var ds = _context.Users
@@ -63,6 +63,22 @@ namespace DOANCuoiKyNET.Controllers
                  }*/
                 return data;
             }
+        }
+
+        [HttpPost]
+        public IActionResult hoatdong()
+        {
+            if (ssuser!=null)
+            {
+                var x = _context.Users.FirstOrDefault(p => p.idUser == ssuser.idUser);
+
+                x.hoatDongLanCuoi = DateTime.Now;
+
+                _context.Update(x);
+                _context.SaveChanges();
+
+            }
+            return View();
         }
 
         [HttpPost]
