@@ -563,7 +563,7 @@ namespace DOANCuoiKyNET.Controllers
      
 
         [HttpPost]
-        public async Task<IActionResult> signup (string houser, string tenuser, string emailuser, string pwuser, string sdtuser, int gioiTinh,string ngaysinh,string thangsinh,string namsinh,string x)
+        public IActionResult signup (string houser, string tenuser, string emailuser, string pwuser, string sdtuser, int gioiTinh,string ngaysinh,string thangsinh,string namsinh,string x)
         {
             var dsus = _context.Users
                    .SingleOrDefault(ipp => (ipp.emailUser == emailuser));
@@ -594,7 +594,7 @@ namespace DOANCuoiKyNET.Controllers
                 users.vaiTro = "users";
                 _context.Add(users);
         
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 
             }
             var dsusers = _context.Users
@@ -637,7 +637,7 @@ namespace DOANCuoiKyNET.Controllers
 
              _context.Add(ips);
 
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             //return RedirectToAction("index", "Sendmail");
             ViewBag.mess = "0";
             return View();
