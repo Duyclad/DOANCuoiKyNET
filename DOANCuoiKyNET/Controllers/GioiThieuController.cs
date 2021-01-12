@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DOANCuoiKyNET.Models;
+using DOANCuoiKyNET.Session;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +11,43 @@ namespace DOANCuoiKyNET.Controllers
 {
     public class GioiThieuController : Controller
     {
+        public sessionuser ssuser
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<sessionuser>("ssuser");
+                /* if (data == null)
+                  {
+                      data = new sessionuser();
+                  }*/
+                return data;
+            }
+        }
+
         public IActionResult Index()
         {
+            if (ssuser != null)
+            {
+                ViewBag.houser = ssuser.hoUser;
+                ViewBag.tenuser = ssuser.tenUser;
+                ViewBag.accmenu1 = "Thông tin cá nhân";
+                ViewBag.accmenu2 = "Đơn mua";
+                ViewBag.accmenu3 = "Thoát";
+                if (ssuser.vaitro == "admin")
+                {
+                    ViewBag.accmenu4 = "Trang quản trị";
+                }
+                else if (ssuser.vaitro == "staff")
+                {
+                    ViewBag.accmenu4 = "Trang nhân viên";
+                }
+            }
+            else
+            {
+                ViewBag.houser = "TÀI";
+                ViewBag.tenuser = "KHOẢN";
+                ViewBag.accmenu1 = "Đăng nhập";
+            }
             ViewBag.tieude = "GIỚI THIỆU VỀ GONZ";
             ViewBag.noidung = "Công ty thời trang GONZ được thành lập từ tháng 01 năm 2021";
 

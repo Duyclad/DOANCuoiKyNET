@@ -14,12 +14,12 @@
             <form asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="tenSP" class="control-label"></label>
+                    <label asp-for="tenSP" class="control-label">Tên sản phẩm</label>
                     <input asp-for="tenSP" class="form-control" />
                     <span asp-validation-for="tenSP" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="giaSP" class="control-label"></label>
+                    <label asp-for="giaSP" class="control-label">Giá</label>
                     <input asp-for="giaSP" class="form-control" value="0" />
                     <span asp-validation-for="giaSP" class="text-danger"></span>
                 </div>
@@ -29,13 +29,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="soLuongKho" class="control-label"></label>
+                    <label asp-for="soLuongKho" class="control-label">Số lượng kho</label>
                     <input asp-for="soLuongKho" class="form-control" value="0" />
                     <span asp-validation-for="soLuongKho" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="moTa" class="control-label"></label>
+                    <label asp-for="moTa" class="control-label">Mô tả</label>
                     <input asp-for="moTa" class="form-control" />
                     <span asp-validation-for="moTa" class="text-danger"></span>
                 </div>
@@ -47,7 +47,7 @@
 
 
                 <div class="form-group">
-                    <label asp-for="trangThai" class="control-label"></label>
+                    <label asp-for="trangThai" class="control-label">Trạng thái</label>
                     <select asp-for="trangThai" class="form-control">
                         <option value="Hiển thị" selected="selected">Hiển thị</option>
                         <option value="Ẩn">Ẩn</option>
