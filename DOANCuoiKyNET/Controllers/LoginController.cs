@@ -443,7 +443,7 @@ namespace DOANCuoiKyNET.Controllers
                 var admins
     = from p in _context.Users
 
-      where p.emailUser == email && p.vaiTro == "admin"
+      where (p.emailUser == email && p.vaiTro == "admin") || (p.sdtUser == email && p.vaiTro == "admin")
       select new
       {
           tenUser = p.tenUser,
@@ -476,7 +476,7 @@ namespace DOANCuoiKyNET.Controllers
                     var staffs
                 = from p in _context.Users
           
-                  where p.emailUser == email && p.vaiTro=="staffs"
+                  where (p.emailUser == email && p.vaiTro=="staffs") || (p.sdtUser == email && p.vaiTro == "staffs")
                   select new
                   {
                       tenUser = p.tenUser,

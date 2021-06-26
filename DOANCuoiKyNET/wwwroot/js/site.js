@@ -300,7 +300,7 @@ $.ajax({
                     type: "POST",
                     success: function (data) {
                         if (data == "users") {
-                            window.location = "Home";
+                            window.location = "/Home/";
                         }
                         else if (data == "admins") {
                             window.location = "/Admin/HomeAdmin"
